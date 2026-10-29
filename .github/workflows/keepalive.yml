@@ -1,0 +1,25 @@
+name: Supabase keep-alive
+# রোজ ২ বার Supabase-এ ছোট একটা পড়া-অনুরোধ পাঠায়, যাতে ফ্রি প্রজেক্ট "পজ" না হয়।
+# URL ও anon কী config.js থেকে নেয় (আলাদা Secret লাগে না)।
+on:
+  schedule:
+    - cron: "17 3 * * *"
+    - cron: "17 15 * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read one row from mc2_settings
+        run: |
+          URL=$(grep -oE 'url: *"[^"]+"' config.js | head -1 | sed -E 's/url: *"([^"]+)"/\1/')
+          KEY=$(grep -oE 'key: *"[^"]+"' config.js | head -1 | sed -E 's/key: *"([^"]+)"/\1/')
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then echo "config.js-এ url/key পাওয়া যায়নি"; exit 1; fi
+          for i in 1 2 3; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL/rest/v1/mc2_settings?select=*&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+            echo "চেষ্টা $i: HTTP $CODE"
+            if [ "$CODE" = "200" ]; then exit 0; fi
+            sleep 20
+          done
+          exit 1
