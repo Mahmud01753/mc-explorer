@@ -1,0 +1,21 @@
+# Cloudflare Pages / Netlify — অ্যাডমিন পাতা ক্যাশ ও সার্চ ইঞ্জিন বন্ধ
+# ⚠️ /admin ও /admin.html-এর হেডার (CSP সহ) netlify.toml-এর সাথে হুবহু এক রাখুন।
+/admin
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Referrer-Policy: no-referrer
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' https: wss:; frame-ancestors 'none'
+
+/admin.html
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Referrer-Policy: no-referrer
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' https: wss:; frame-ancestors 'none'
+
+# সার্ভিস ওয়ার্কার সবসময় নতুন আনবে (আপডেট সাথে সাথে ধরতে)
+/sw.js
+  Cache-Control: no-cache, max-age=0

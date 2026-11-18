@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MC Explorer — তুমি কলেজ কতটুকু চেনো?</title>
+<meta name="description" content="মুরারিচাঁদ কলেজ কতটুকু চেনো? ১০টি প্রশ্নে স্কোর, কার্ড আর বন্ধুকে চ্যালেঞ্জ।">
+<meta name="theme-color" content="#f4f7f2">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<meta property="og:title" content="MC Explorer — তুমি কলেজ কতটুকু চেনো?">
+<meta property="og:site_name" content="MC Explorer">
+<meta property="og:type" content="website">
+<meta property="og:description" content="১০টি প্রশ্নে নিজের MC স্কোর জানো, কার্ড শেয়ার করো, বন্ধুকে চ্যালেঞ্জ দাও।">
+<meta property="og:image" content="/images/og.jpg" id="ogimg">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<script>try{var o=document.getElementById("ogimg");o.content=location.origin+"/images/og.jpg"}catch(e){}</script>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet';window.__fcss=1;document.dispatchEvent(new Event('mcfontcss'))">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap"></noscript>
+<script src="config.js"></script>
+<script src="ui-config.js"></script>
+<script src="qimg-config.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="design.css">
+</head>
+<body>
+<div class="app">
+  <a class="shd" id="shd" href="#home" aria-label="MC Explorer হোম"><img src="images/logo-explorer.png" width="56" height="56" alt=""><b>MC Explorer</b><span class="dom" id="shdom"></span></a>
+  <script>try{var _c=window.MC_CFG||{},_d=(_c.siteUrl||location.host||"").replace(/^https?:\/\//,"").replace(/\/.*$/,"");document.getElementById("shdom").textContent=_d}catch(e){}</script>
+  <header class="hd"><a class="brand" href="#home"><span class="dot">M</span><span id="hdt">MC Explorer</span></a><span class="tag" id="hdtag" hidden>নতুন</span><div class="hh" id="hh"><a class="hlogo" href="#home" aria-label="MC Explorer হোম"><img src="images/logo-explorer.png" width="46" height="46" alt="MC Explorer"></a><a class="hbrand" id="hbr" href="#home" aria-label="MC Explorer হোম"><span class="hb1" aria-hidden="true"><i>MC</i></span><span class="hb2" aria-hidden="true"><i>E</i><i>x</i><i>p</i><i>l</i><i>o</i><i>r</i><i>e</i><i>r</i></span><span class="hbg" aria-hidden="true"></span></a><span class="dseal s5" aria-hidden="true"><b id="hdm"></b></span><canvas id="hsp" aria-hidden="true"></canvas></div></header>
+  <button type="button" class="pz" id="pzb" aria-label="পুরস্কারের বিস্তারিত দেখুন"><span class="pzi" aria-hidden="true">🏆</span><span class="pzt"><b>প্রতি সপ্তাহে লটারির মাধ্যমে <span class="wcnt">৫ জন</span> বিজয়ী পুরস্কার পাবেন!</b><small>শেয়ার করুন · ফর্ম জমা দিন · জিতে নিন 🎁</small><small class="pzu">পুরস্কার আপডেট পেতে পেইজে চোখ রাখুন<b class="pzc" role="link" tabindex="0">এখানে ক্লিক ›</b></small></span><span class="pzg" aria-hidden="true">›</span></button>
+  <div class="xw"><a class="xbtn" id="xb" href="#home" aria-label="বন্ধ করে হোমে যান" hidden>✕</a></div>
+  <main id="view" tabindex="-1"></main>
+  <footer><button type="button" class="ctlink" id="ctBtn" hidden>🎁 শেয়ার করে পুরস্কার জিতুন<small class="pzu">পুরস্কার আপডেট পেতে পেইজে চোখ রাখুন<b class="pzc" role="link" tabindex="0">এখানে ক্লিক ›</b></small></button>শিক্ষার্থীদের উদ্যোগে তৈরি · কলেজের অফিসিয়াল সাইট নয় · <a class="linkbtn" href="#anon">💬 Chat</a> · <button type="button" class="linkbtn" id="oldBtn">🔒 পুরোনো সাইট খুলুন</button></footer>
+  <a class="fbfab" id="fbfab" href="#" target="_blank" rel="noopener" aria-label="আমাদের ফেসবুক পেইজ"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg><span>ফেসবুক পেইজ</span></a>
+  <nav class="tabbar" id="tabbar" aria-label="প্রধান মেনু">
+    <a href="#home" data-t="home"><i>🏠</i>হোম</a>
+    <a href="#result" data-t="result"><i>🪪</i>আমার কার্ড</a>
+    <a href="#board" data-t="board"><i>🏆</i>লিডারবোর্ড</a>
+    <a href="#anon" data-t="chat"><i>💬</i>চ্যাট</a>
+    <a href="#winners" data-t="winners" id="tbWin" hidden><i>🏅</i>বিজয়ী</a>
+    <a href="#survey" data-t="survey"><i>📊</i>সার্ভে</a>
+  </nav>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="data.js"></script>
+<script src="titles.js"></script>
+<script>
+// দেরিতে লোড: হোম আঁকা শেষ হলে পেছনে বাকি স্ক্রিপ্ট আনে (আগের ক্রম ঠিক রেখে)। app.js শেষে __mcDef.start() ডাকে; না ডাকলেও ৩ সেকেন্ড পরে নিজে শুরু হয়।
+(function(){var L=["qr.js","logo-config.js","card.js","community.js","cards.js","anonchat.js","presence.js","pin.js","fbok.js","contest.js","winners.js","scroll-btn.js","float-search.js"],ok,D=window.__mcDef={done:false,go:false};D.p=new Promise(function(r){ok=r});
+D.start=function(){if(D.go)return;D.go=true;var n=L.length;L.forEach(function(f){var s=document.createElement("script");s.src=f;s.async=false;s.onload=s.onerror=function(){if(--n===0){D.done=true;ok()}};document.head.appendChild(s)})};
+setTimeout(D.start,3000)})();
+</script>
+<script src="app.js"></script>
+<script src="home-seal.js"></script>
+<script>
+// কোনো জরুরি ফাইল লোড না হলে ওপরে বার্তা দেখায় (কোন ফাইল আবার আপলোড করতে হবে)
+window.addEventListener("load",function(){(window.__mcDef?window.__mcDef.p:Promise.resolve()).then(function(){
+  var m=[];if(!window.MC)m.push("data.js");if(!window.drawCard2)m.push("card.js");if(!window.pickTitle)m.push("titles.js");if(!window.makeQR)m.push("qr.js (ঐচ্ছিক)");
+  if(!m.length)return;var d=document.createElement("div");
+  d.style.cssText="position:fixed;top:0;left:0;right:0;z-index:99;background:#c0392b;color:#fff;padding:10px 14px;font:600 14px 'MCDigits','Hind Siliguri','Noto Sans Bengali','Nirmala UI','Bangla Sangam MN','Kalpurush','Siyam Rupali',sans-serif;text-align:center";
+  d.innerHTML="কিছু ফাইল লোড হয়নি: "+m.join(", ")+" — ঠিকানার শেষে ../status.html দেখুন";document.body.appendChild(d);
+});});
+</script>
+</body>
+</html>

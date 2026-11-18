@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MC Explorer ফাইল পরীক্ষা</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@700;800&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3ee;--card:#fff;--fg:#10261b;--mut:#566b5e;--bd:#d3ddd5;--ok:#1d7a43;--bad:#c0392b;--warn:#b26a00;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1913;--card:#15261d;--fg:#e6efe8;--mut:#9bb2a3;--bd:#27412f;--ok:#4cc088;--bad:#ff7b6b;--warn:#f0a52e;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.5 "Hind Siliguri",system-ui,sans-serif;padding:20px 16px 40px}
+main{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{font:800 24px "Anek Bangla","Hind Siliguri",sans-serif;margin:0}h2{font:700 17px "Anek Bangla","Hind Siliguri",sans-serif;margin:8px 0 0}
+p{margin:0;color:var(--mut)}
+.sum{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;font-weight:600}
+.sum.ok{border-color:var(--ok)}.sum.bad{border-color:var(--bad)}
+.tw{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--bd);vertical-align:top;font-size:15px}
+th{font-size:13px;color:var(--mut);letter-spacing:.02em}tr:last-child td{border-bottom:0}
+code{font-family:ui-monospace,monospace;font-size:13px}
+.s{font-weight:700;white-space:nowrap}.s.ok{color:var(--ok)}.s.bad{color:var(--bad)}.s.warn{color:var(--warn)}
+.fix{font-size:13px;color:var(--mut)}
+button{font:600 15px "Hind Siliguri",sans-serif;padding:9px 14px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--fg);cursor:pointer;align-self:flex-start}
+</style></head><body><main>
+<h1>MC Explorer ফাইল পরীক্ষা</h1>
+<p>কোনো কিছু কাজ না করলে এখানে দেখুন কোন ফাইলটা নেই বা ভাঙা। শুধু সেই একটা ফাইল আবার আপলোড করলেই হবে, বাকিগুলো ছুঁতে হবে না।</p>
+<div class="sum" id="sum">পরীক্ষা চলছে…</div>
+<button id="re" type="button">আবার পরীক্ষা করো</button>
+<h2>সাইটের ফাইল</h2>
+<div class="tw"><table><thead><tr><th>ফাইল</th><th>কী করে</th><th>অবস্থা</th></tr></thead><tbody id="t1"></tbody></table></div>
+</main>
+<script>
+(function(){
+  "use strict";
+  var NEW="";
+  // [ফাইল, কী করে, JS কি না, জরুরি কি না (না থাকলে সাইট চলে না)]
+  // ফাইলের তালিকা নিজে থেকে বের হয়: index.html-এর <script src> ও <link href> পড়ে। নতুন ফাইল যোগ করলে এখানে কিছু বদলাতে হয় না।
+  // শুধু বর্ণনা জানা থাকলে এখানে লেখা আছে, না থাকলে "নতুন ফাইল" দেখায়।
+  var DESC={"admin-zoom.js":"প্রিভিউ-জানালায় দুই আঙুলে পিঞ্চ-জুম (শিট, কার্ড, পোস্টার, সোশ্যাল)","admin-fbc.js":"অ্যাডমিনের সব তালিকায় 📣 ফেসবুক-অনুমতির চিহ্ন (হ্যাঁ ছবি সহ/ছাড়া, না, দেয়নি)","admin-sheet.js":"বিজয়ীদের একসাথে এক পেজের শিট (সাইটের নামসহ একটাই ছবি)","fbok.js":"ফেসবুক পেইজে কার্ড ছাড়ার অনুমতির পপআপ (কুইজের পর) ও জমা-ফর্মের লাইন; সার্ভারে supabase-new-20261220.sql লাগে","admin-xlsx.js":"অ্যাডমিনের ⬇ এক্সেল ফাইলের কমন ডিজাইন (ব্যানার, সারসংক্ষেপ, সেরা তিনজন, টেবিল)","admin-export.js":"অ্যাডমিনের 🪪 কার্ড ট্যাবে 📦 ZIP — কার্ড JPG (১০০ KB-এর নিচে) + এক্সেল + PDF একটা ZIP-এ (ভাগ ৩; JSZip/jsPDF cdnjs-এ নির্দিষ্ট ভার্সন; নতুন SQL নেই)","admin-xtab.js":"অ্যাডমিনের বাকি ট্যাবে ⬇ এক্সেল (সাজানো) বাটন — সার্ভে, লিডারবোর্ড, স্কোর, ভিজিটর, User Info, পুরস্কার ও নোট (ধাপ ৫-ক); কার্ড, বিজয়ী ঘোষণা, বিজয়ী কার্ড সেটিংস, কুইজ ছবি, ছবির গ্যালারি, 📁 ফোল্ডার (ধাপ ৫-খ); 💬 চ্যাট, 💬 বেনামি চ্যাট, 🛡 মডারেশন, 🗑 বিন (ধাপ ৫-গ); 🖼 কার্ড প্রিভিউ-সহ এক্সেল (ধাপ ৫-ঘ); 🎯 কুইজ কঠিনতা (ভাগ ১)","admin-xdlg.js":"অ্যাডমিনের ⬇ এক্সেল ডাউনলোড-ফিল্টার জানালা (ফিল্টার, কলাম নির্বাচক, ফোল্ডার)","admin-cleanup.js":"অ্যাডমিন অটো-ক্লিন ট্যাব (পুরোনো ডেটা ছোট ব্যাচে মোছা)","winners.js":"বিজয়ীদের তালিকা বাটন ও পেজ","admin-winners.js":"অ্যাডমিন বিজয়ী ঘোষণা ট্যাব","cards.js":"কার্ড সংরক্ষণ + লিডারবোর্ডের সেরা ৩ (ছবি ও কার্ড প্রিভিউ)","anonchat.js":"বেনামি চ্যাট (বিভাগ → সেশন → নাম → চ্যাট, User Info কার্ড)","presence.js":"অনলাইন স্ট্যাটাস ও ভিজিটর (Last Active)","community.js":"চ্যাট, সবার লিডারবোর্ড, ভিজিটর লগ, নতুন ছবি","contest.js":"শেয়ার করে পুরস্কার জেতার ফর্ম ও ঘোষণা","index.html":"সাইটের কাঠামো","style.css":"সব রঙ ও সাজ","app.js":"সব পর্দা ও খেলার হিসাব","data.js":"জায়গা, প্রশ্ন, বিভাগ, ক্লাসের নাম ও রঙ","card.js":"স্কোর কার্ড ও স্টোরি কার্ড আঁকা (ক্লাস প্লেটসহ)","titles.js":"মজার উপাধির তালিকা","qr.js":"কার্ডের QR কোড","config.js":"Supabase সংযোগ ও সাইটের ঠিকানা (siteUrl)","pin.js":"পুরোনো সাইট খোলার পিন বাটন","images/logo-card-explorer.png":"MC Explorer লোগো (বামে)","images/logo-mc.png":"MC লোগো (ডানে)","images/logo-nu.png":"জাতীয় বিশ্ববিদ্যালয়ের লোগো (ঐচ্ছিক)","sw.js":"ফোনে অ্যাপের মতো রাখা (ঐচ্ছিক)","manifest.webmanifest":"হোম স্ক্রিনে যোগ করার তথ্য"};
+  var OPTIONAL={"winners.js":1,"cards.js":1,"anonchat.js":1,"presence.js":1,"qr.js":1,"config.js":1,"pin.js":1,"contest.js":1,"fbok.js":1,"admin-sheet.js":1,"admin-fbc.js":1,"admin-zoom.js":1,"community.js":1};   // না থাকলেও সাইট চলে
+  var EXTRA=["images/logo-card-explorer.png","images/logo-mc.png","images/logo-nu.png","sw.js","manifest.webmanifest"];   // সবসময় দেখা হয় (ঐচ্ছিক)
+  function local(u){return u&&!/^([a-z]+:)?\/\//i.test(u)&&u.charAt(0)!=="/"&&u.charAt(0)!=="#"}
+  function norm(u){return u.split("?")[0].split("#")[0].replace(/^\.\//,"")}
+  function discover(){
+    return fetch(NEW+"index.html",{cache:"no-store"}).then(function(r){
+      if(!r.ok)throw 0;return r.text();
+    }).then(function(t){
+      var d=new DOMParser().parseFromString(t,"text/html"),seen={"index.html":1},list=[["index.html",DESC["index.html"],0,1]];
+      function add(u,isJs){u=norm(u);if(!local(u)||seen[u])return;seen[u]=1;list.push([u,DESC[u]||"নতুন ফাইল",isJs?1:0,OPTIONAL[u]?0:1])}
+      d.querySelectorAll("script[src]").forEach(function(e){add(e.getAttribute("src"),1)});
+      d.querySelectorAll('link[rel~="stylesheet"][href]').forEach(function(e){add(e.getAttribute("href"),0)});
+      EXTRA.forEach(function(u){if(!seen[u]){seen[u]=1;list.push([u,DESC[u]||"নতুন ফাইল",/\.js$/.test(u)?1:0,0])}});
+      return list;
+    }).catch(function(){return [["index.html",DESC["index.html"],0,1]]});
+  }
+  var N=[];
+  function row(base,f,res){
+    var st,cls,fix="";
+    if(res.status==="missing"){st="❌ নেই";cls="bad";fix=f[3]?"এই ফাইলটা আবার আপলোড করুন ("+base+f[0]+")":"না থাকলে সাইট চলে, তবে এই অংশ কাজ করবে না";if(!f[3])cls="warn"}
+    else if(res.status==="syntax"){st="⚠️ ভাঙা";cls="bad";fix="ফাইলে ভুল আছে ("+res.msg+")। আগের ঠিক সংস্করণটা আবার আপলোড করুন"}
+    else{st="✅ ঠিক";cls="ok"}
+    return '<tr><td><code>'+f[0]+'</code></td><td>'+f[1]+(fix?'<div class="fix">'+fix+'</div>':'')+'</td><td class="s '+cls+'">'+st+'</td></tr>';
+  }
+  function check(base,f){
+    return fetch(base+f[0],{cache:"no-store"}).then(function(r){
+      if(!r.ok)return {status:"missing"};
+      if(!f[2])return {status:"ok"};
+      return r.text().then(function(t){try{new Function(t);return {status:"ok"}}catch(e){return {status:"syntax",msg:String(e.message).slice(0,80)}}});
+    }).catch(function(){return {status:"missing"}});
+  }
+  function run(){
+    document.getElementById("sum").textContent="পরীক্ষা চলছে…";document.getElementById("sum").className="sum";
+    discover().then(function(list){N=list;return Promise.all(N.map(function(f){return check(NEW,f)}))}).then(function(a){
+      document.getElementById("t1").innerHTML=N.map(function(f,i){return row(NEW,f,a[i])}).join("");
+      (function(){
+        var bad=0,warn=0;a.forEach(function(r,i){var f=N[i];if(r.status!=="ok"){if(f[3]||r.status==="syntax")bad++;else warn++}});
+        var s=document.getElementById("sum");
+        if(!bad&&!warn){s.textContent="✅ সব ফাইল ঠিক আছে।";s.className="sum ok"}
+        else if(!bad){s.textContent="✅ জরুরি সব ফাইল ঠিক। "+warn+"টি ঐচ্ছিক ফাইল নেই।";s.className="sum ok"}
+        else{s.textContent="❌ "+bad+"টি জরুরি ফাইলে সমস্যা। নিচে লাল চিহ্নিত ফাইল আবার আপলোড করুন।";s.className="sum bad"}
+      })();
+    });
+  }
+  document.getElementById("re").onclick=run;run();
+})();
+</script></body></html>

@@ -1,0 +1,13 @@
+{
+  // Cloudflare (Workers + Static Assets) — এই ফাইল থাকলে `npx wrangler deploy` সরাসরি চলে।
+  // ⚠️ "name" অবশ্যই Cloudflare প্রজেক্টের নামের সাথে হুবহু মিলতে হবে (Settings → Build-এ দেখুন)।
+  "name": "mc-explorer",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/", "/index.html"],
+    "not_found_handling": "single-page-application"
+  }
+}

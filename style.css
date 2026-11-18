@@ -1,0 +1,347 @@
+@font-face{font-family:"MCDigits";font-weight:100 500;src:local("Noto Sans Bengali"),local("NotoSansBengali-Regular"),local("NotoSansBengali"),local("Nirmala UI"),local("Bangla Sangam MN"),local("Kalpurush");unicode-range:U+09E6-09EF}@font-face{font-family:"MCDigits";font-weight:600 900;src:local("Noto Sans Bengali Bold"),local("NotoSansBengali-Bold"),local("Nirmala UI Bold"),local("Bangla Sangam MN Bold"),local("Noto Sans Bengali"),local("NotoSansBengali"),local("Nirmala UI"),local("Bangla Sangam MN"),local("Kalpurush");unicode-range:U+09E6-09EF}
+:root{color-scheme:light;--bg:#eef3ee;--pc:#f4f7f2;--fg:#10261b;--mut:#5a6f62;--bd:#d6ded8;--card:#fff;--g:#1d6b43;--g2:#0f6b46;--o:#d98200;--chip:#e7eee8;--warn:#fff7e6;--dark:#0f2d20}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg);color:var(--fg);font:400 16px/1.55 "MCDigits","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+h1,h2,h3,.brand,.big{font-family:"MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.app{max-width:520px;min-height:100vh;margin:0 auto;background:var(--pc);display:flex;flex-direction:column;position:relative;padding-top:env(safe-area-inset-top)}
+@media(min-width:560px){.app{margin:18px auto;min-height:calc(100vh - 36px);border-radius:32px;border:1px solid var(--bd);box-shadow:0 18px 50px #0f2d2022;overflow:hidden}}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 6px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px}
+.dot{width:28px;height:28px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-size:13px}
+.tag{background:var(--o);color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px}
+main{flex:1;padding:8px 18px 96px;display:flex;flex-direction:column;gap:12px;outline:0}
+.big{font-weight:800;font-size:28px;line-height:1.2}.big .g{color:var(--g)}
+.sm{font-size:13px;color:var(--mut)}
+.btn{display:block;width:100%;text-align:center;padding:14px;border-radius:999px;background:var(--g);color:#fff;font-weight:700;font-size:16px;border:0;cursor:pointer;transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.98)}
+.btn.o{background:var(--o)}.btn.l{background:var(--card);color:var(--fg);border:1px solid var(--bd)}
+.btn.xl{font-size:18px;padding:16px}.btn.s{padding:10px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.in{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:11px 12px;font-size:15px}
+.lbl{font-size:13px;color:var(--mut);font-weight:600;margin-bottom:-6px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:6px 12px;border-radius:999px;background:var(--chip);font-size:14px;font-weight:600;color:var(--g2);border:0;cursor:pointer}
+.chip.s{background:var(--g);color:#fff}
+.chip.static{cursor:default;font-size:12px;padding:2px 9px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:11px 13px}
+.box.w{background:var(--warn);border-color:var(--o)}
+.row{display:flex;align-items:center;gap:8px;font-size:14px}.row+.row{margin-top:7px}.row b{margin-left:auto}
+.bar{height:10px;border-radius:5px;background:var(--chip);flex:1;overflow:hidden}.bar i{display:block;height:100%;background:var(--g);border-radius:5px}
+.row .nm{min-width:84px}
+.me{background:var(--chip);border-radius:8px;padding:4px 6px}
+.note{font-size:12.5px;color:var(--mut);background:var(--warn);border:1px dashed var(--o);border-radius:10px;padding:7px 10px}
+.cardimg{width:100%;height:auto;border-radius:20px;display:block;box-shadow:0 8px 26px #0f2d2033}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.meta{display:flex;justify-content:space-between;color:var(--mut);font-size:14px}
+.prog{height:6px;border-radius:3px;background:var(--chip);overflow:hidden}.prog i{display:block;height:100%;background:var(--o);transition:width .3s}
+.zbox{aspect-ratio:8/5;border-radius:18px;overflow:hidden;background:var(--chip);border:1px solid var(--bd)}.zbox img{width:100%;height:100%;display:block}
+.q{font:700 19px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif}
+.opts{display:grid;gap:8px}
+.opt{padding:13px;border-radius:14px;border:1.5px solid var(--bd);background:var(--card);text-align:left;font-weight:600;cursor:pointer;font-size:16px}
+.opt:hover{border-color:var(--g)}
+.opt.ok{background:#1d6b43;color:#fff;border-color:#1d6b43}.opt.no{background:#c8213f;color:#fff;border-color:#c8213f}
+.opts.lock .opt{pointer-events:none}
+.tm{font-weight:700;color:var(--o)}.tm.low{color:#c8213f}
+.vs{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700}
+.tabbar{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--bd);padding:6px 4px calc(6px + env(safe-area-inset-bottom));margin-top:auto}
+.tabbar a{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--mut);padding:4px 0;border-radius:12px}
+.tabbar a i{font-style:normal;font-size:19px}.tabbar a.on{color:var(--g)}
+body.focus .tabbar{display:none}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:10px 14px 4px}footer a{text-decoration:underline}
+.toast{position:fixed;left:50%;bottom:84px;transform:translate(-50%,30px);background:var(--dark);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:20;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.cmp{text-align:center;font-weight:700}
+.cmp.win{color:var(--g)}.cmp.lose{color:#c8213f}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.mc{background:var(--card);border:3px solid #7c4dff;border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:6px;box-shadow:0 0 18px #7c4dff44}
+.mc .t{background:#0f2d20;color:#fff;border-radius:10px;text-align:center;font:800 14px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif;padding:6px}
+.ut{font:800 22px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif;color:var(--o)}
+.st{background:var(--g);color:#fff;border:2px solid #fff;outline:2px solid var(--g);border-radius:8px;padding:6px 8px;text-align:center;transform:rotate(-2deg);margin-left:auto;width:62%}
+.st small{display:block;font-size:15px;font-weight:700}.st b{font:800 24px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif}
+.more{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}.more summary{cursor:pointer;font-size:13px;color:var(--mut);font-weight:600}.more[open] summary{margin-bottom:8px}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.seg button{position:relative;border:2px solid var(--bd);background:var(--card);padding:11px 0;border-radius:14px;font-weight:700;font-size:14px;color:var(--g2);cursor:pointer;box-shadow:0 3px 0 var(--bd);transition:transform .08s,box-shadow .08s}.seg button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--bd)}.seg button .tick{display:none;position:absolute;top:-8px;right:-4px;width:20px;height:20px;border-radius:50%;background:var(--o);color:#fff;font-size:12px;line-height:20px}.seg button.on{background:var(--g);border-color:var(--g);color:#fff;box-shadow:0 3px 0 #0f3d28}.seg button.on .tick{display:block}.seg button:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+select.in{appearance:auto;min-height:46px}.lbl[hidden],select[hidden]{display:none}
+.row .nm{flex:0 0 38%;line-height:1.25}.chip.static{white-space:nowrap}
+.fld{display:flex;flex-direction:column;gap:6px}.fld[hidden],.in[hidden]{display:none}
+
+.two2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}.two2>.fld[hidden]{display:none}.pair{display:flex;gap:8px}.pair>*{flex:1 1 0;min-width:0}
+.fileb{padding:8px;font-size:12px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--g);font-weight:700;text-decoration:underline;cursor:pointer}
+.pinov{position:fixed;inset:0;background:rgba(10,24,16,.55);display:grid;place-items:center;padding:16px;z-index:50}
+.pinbox{background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:18px;padding:18px;width:100%;max-width:340px;display:flex;flex-direction:column;gap:10px}
+.pinbox b{font:800 18px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif}
+.pinhint{font-size:14px;color:var(--mut)}.pinhint span{font-family:"MCDigits","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",system-ui,sans-serif;letter-spacing:.12em;color:var(--fg);font-weight:700}
+.pinmsg{min-height:1.2em;font-size:14px;color:#c0392b}
+
+.skips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.skip{padding:11px 8px;border-radius:14px;border:2px solid var(--bd);background:var(--card);color:var(--g2);font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 3px 0 var(--bd)}.skip:active{transform:translateY(2px);box-shadow:0 1px 0 var(--bd)}.skip.all{color:var(--mut)}.skip.arm{background:var(--o);border-color:var(--o);color:#fff;box-shadow:0 3px 0 #9a5b00}
+
+/* হোম পাতা: ভ্রমণ-পাসপোর্ট ধাঁচের হিরো ও ফর্ম কার্ড */
+.hero{position:relative;margin:-8px -18px 0;padding:26px 18px 22px;text-align:center;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:12px;background:linear-gradient(#e6efe8,var(--pc))}
+.hchip{position:relative;background:#dcebe1;color:#0f4a30;font-weight:700;font-size:15px;padding:9px 20px;border-radius:999px}
+.htt{position:relative;font:800 clamp(40px,12.5vw,58px)/1.12 "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif;color:#10261b;text-wrap:balance}.htt em{font-style:normal;color:#1d8a56}.htt b{color:#d6294a;font-weight:800}
+.fcard{display:flex;flex-direction:column;gap:12px;background:var(--card);border:2px solid #cfdccf;border-radius:34px;padding:18px}
+.fcard .in{border:2px solid #cfdccf;border-radius:20px;padding:15px 16px;font-size:17px;min-height:56px}.fcard .lbl{font-size:15px;color:var(--fg);font-weight:700}
+.fcard .seg button{border-radius:999px;padding:13px 0;font-size:15px}.fcard .seg button.on{background:#10261b;border-color:#10261b;box-shadow:0 3px 0 #000}
+.fcard .btn.o{background:#10261b;border-radius:999px;font-size:19px;padding:18px;box-shadow:0 5px 0 #000}.fcard .btn.o:active{transform:translateY(3px);box-shadow:0 2px 0 #000}
+.htt.sm{font-size:clamp(30px,9.5vw,44px);overflow-wrap:anywhere}.chsub{position:relative;font-weight:700;color:#0f4a30;font-size:16px}
+
+/* ডিজাইন ঘ: কুইজ-শো (হোম ও চ্যালেঞ্জ পাতা) */
+body.dh,body.dh html{background:#0f2d20}
+body.dh .app{background:linear-gradient(160deg,#0b8f6a,#1d6b43 45%,#0f2d20)}
+body.dh .hd{color:#fff}body.dh .brand .dot{background:#fff;color:#0b8f6a}
+body.dh footer{color:#d3efe0}body.dh footer .linkbtn{color:#ffd84a}
+body.dh .hero{background:none;gap:14px;padding-top:20px}
+body.dh .hchip{background:#ffd84a;color:#10261b;font-weight:800;box-shadow:0 4px 0 #b8860b}
+body.dh .htt{color:#fff;text-shadow:0 5px 0 #0a5a3f}body.dh .htt em{color:#ffd84a}body.dh .htt b{color:#fff}
+body.dh .chsub{color:#d3efe0}
+body.dh .fcard{border:0;border-radius:30px;box-shadow:0 10px 0 #0a5a3f}
+body.dh .fcard .in{background:#eef4ef;border:0;border-radius:16px}
+body.dh .fcard .seg button{background:#eef4ef;border:2px solid #dbe6de;box-shadow:none;border-radius:999px}
+body.dh .fcard .seg button.on{background:#ff4d6d;border-color:#ff4d6d;color:#fff;box-shadow:0 3px 0 #b3203f}
+body.dh .fcard .btn.o{background:linear-gradient(#ff6a88,#e11d48);box-shadow:0 6px 0 #9f1239;font-size:21px}
+body.dh .fcard .btn.o:active{box-shadow:0 2px 0 #9f1239}
+body.dh .box{background:#fff}
+.zbox{position:relative;aspect-ratio:4/3}.zbox::before{content:"";position:absolute;inset:-12px;background:var(--bg) center/cover;filter:blur(14px) brightness(.9)}.zbox img{position:relative;object-fit:contain}
+.cr{text-align:right;font-size:11px;color:var(--mut);margin-top:-6px;padding-right:4px}
+/* হোম কম্প্যাক্ট: পুরো ফর্ম ও ভাসমান বাটন এক স্ক্রিনে */
+body.dh .hero{padding:8px 18px 4px;gap:8px}
+body.dh .hchip{font-size:13px;padding:6px 14px}
+body.dh .htt{font-size:clamp(30px,9.2vw,42px);line-height:1.08}
+body.dh .htt.sm{font-size:clamp(26px,8vw,36px)}
+body.dh .chsub{font-size:14px}
+body.dh .fcard{gap:7px;padding:12px;border-radius:26px;box-shadow:0 7px 0 #0a5a3f}
+body.dh .fcard .in{min-height:44px;padding:9px 14px;font-size:16px;border-radius:14px}
+body.dh .fcard .lbl{font-size:13px;margin-bottom:-4px}
+body.dh .fcard .seg button{padding:9px 0;font-size:14px}
+body.dh .fcard .two2{gap:8px}
+body.dh .fcard .fld{gap:6px}
+body.dh .fcard .btn.o{position:sticky;bottom:calc(66px + env(safe-area-inset-bottom));z-index:5;padding:14px;font-size:19px;box-shadow:0 5px 0 #9f1239,0 10px 24px #0008}
+body.dh main{padding-bottom:84px}
+/* হোমের শিরোনাম বড় */
+body.dh .hero{padding:14px 18px 10px}
+body.dh .htt:not(.sm){font-size:clamp(44px,14vw,66px);line-height:1.06}
+/* শিরোনাম: সবসময় ২ লাইন (তুমি এম.সি / কতটুকু চেনো?) */
+body.dh .htt:not(.sm){font-size:clamp(30px,12vw,58px);line-height:1.08}
+body.dh .htt:not(.sm) span,body.dh .htt:not(.sm) em,body.dh .htt:not(.sm) b{white-space:nowrap}
+
+/* ভেতরের পেজ (কার্ড/লিডারবোর্ড/সার্ভে): সবুজ হেডার, ফুটার, নিচে ✕ বাটন */
+body.inn .hd{background:linear-gradient(135deg,#0b8f6a,#1d6b43);color:#fff;padding:14px 18px 14px;border-radius:0 0 22px 22px;box-shadow:0 6px 18px #0f2d2030}
+body.inn .brand .dot{background:#fff;color:#0b8f6a}
+body.inn .tag{background:#ffd84a;color:#10261b}
+body.inn main{padding-top:14px}
+body.inn footer{background:#0f2d20;color:#d3efe0;padding:12px 14px;margin-top:0;font-size:12.5px}
+body.inn footer .linkbtn{color:#ffd84a}
+.xw{position:relative;height:0;z-index:21}
+.xbtn{position:absolute;right:0;top:-8px;width:38px;height:38px;border-radius:50%;background:#e23b57;color:#fff;font:800 19px/34px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif;text-align:center;box-shadow:0 3px 0 #a8203a,0 5px 12px #0005;border:3px solid #fff}
+.xbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #a8203a}
+.xbtn[hidden]{display:none}
+
+/* খেলার নিয়ম পপ-আপ */
+.rlink{display:block;margin:10px auto 0;background:none;border:0;color:var(--g);font-weight:700;font-size:14px;text-decoration:underline;padding:6px}
+.rmodal{position:fixed;inset:0;z-index:60;background:#07140ecc;display:grid;place-items:center;padding:14px;overflow:auto}
+.rbox{background:#fff;border-radius:22px;padding:18px 16px 16px;width:min(100%,430px);max-height:92vh;overflow:auto;box-shadow:0 20px 60px #0008}
+.rbox h2{font-size:21px;margin-bottom:8px;color:var(--g2)}.rbox h3{font-size:16px;margin:14px 0 8px}
+.rbox ul{padding-left:20px;display:grid;gap:6px;font-size:15px;line-height:1.5}
+.rbs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.rb{border-radius:14px;padding:9px 10px;display:flex;flex-direction:column;align-items:center;box-shadow:0 3px 0 #0003;font-size:14px;text-align:center}.rb b{font-family:"MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif;font-size:14px;letter-spacing:.3px}.rb span{font-weight:700;font-size:13px;opacity:.95}
+.rx{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;width:40px;height:40px;border-radius:50%;background:#e23b57;color:#fff;border:3px solid #fff;font:800 19px/34px "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif;box-shadow:0 3px 0 #a8203a}
+.sbox{width:min(100%,380px);display:grid;gap:8px}.sbox h2 small{display:block;font-size:12px;font-weight:600;color:var(--mut,#5a6f62);margin-top:2px}
+.simg{display:block;margin:0 auto;width:auto;max-width:100%;max-height:54vh;aspect-ratio:1080/1920;border-radius:14px;background:var(--chip,#e7eee8);box-shadow:0 6px 20px #0003}
+.sbox .note{font-size:12px}.sbox [hidden]{display:none}.sbox .two:has(#srm[hidden]){grid-template-columns:1fr}
+.stbtn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 16px;border:0;border-radius:20px;color:#fff;cursor:pointer;background:linear-gradient(120deg,#ff7a18,#e11d48 55%,#7c3aed);box-shadow:0 5px 0 #7f1239,0 10px 22px #e11d4855;transition:transform .12s;position:relative;overflow:hidden;font-family:inherit}
+.stbtn:active{transform:translateY(3px);box-shadow:0 2px 0 #7f1239}
+.stbtn .si{font-size:30px;flex:none;filter:drop-shadow(0 2px 2px #0004)}.stbtn .stx{flex:1;display:grid;line-height:1.25}.stbtn .stx b{font-size:18px;font-weight:800}.stbtn .stx small{font-size:12.5px;opacity:.92;font-weight:600}.stbtn .sar{font-size:30px;font-weight:800;opacity:.9}
+.stbtn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#fff5,transparent);transform:skewX(-20deg);animation:stsh 3.2s ease-in-out infinite}
+@keyframes stsh{0%,55%{left:-60%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.stbtn::after{animation:none;display:none}}
+.ctlink{display:block;margin:0 auto 8px;padding:9px 16px;border:0;border-radius:999px;background:linear-gradient(120deg,#ffb300,#ff7a18);color:#3a1d00;font:800 14px inherit;font-family:inherit;cursor:pointer;box-shadow:0 3px 0 #a85a00}.ctlink[hidden]{display:none}.ctlink:active{transform:translateY(2px);box-shadow:0 1px 0 #a85a00}
+.ctbox{display:grid;gap:6px;padding:12px 14px;border-radius:18px;border:2px dashed var(--o);background:var(--warn);text-align:center}.ctbox[hidden]{display:none}.ctbox b{font-size:15.5px;color:#7a4300}.ctbox span{font-size:13px;color:var(--mut)}.ctbox .btn{margin-top:2px}
+.cbox{width:min(100%,430px)}.cbox .fld{margin-bottom:10px}.cbox .lbl small{font-weight:500;color:var(--mut)}
+.cann{background:linear-gradient(135deg,#fff3c4,#ffe0a3);border:2px solid #f0b400;border-radius:16px;padding:11px 13px;margin-bottom:12px;color:#4a2a00}.cann b{display:block;font-size:16px;margin-bottom:4px}.cann ol{padding-left:20px;display:grid;gap:3px;font-size:14px;margin:4px 0}.cann small{display:block;font-size:12.5px;color:#7a4300;margin-top:4px}
+.cdone{background:#e3f6ea;border:1px solid #9bd3b0;color:#14552f;border-radius:12px;padding:8px 11px;font-size:13.5px;margin-bottom:10px}
+.cpair{display:flex;gap:8px}.cpair .in{flex:1 1 auto;min-width:0}.cpair .chip{flex:none}
+.cshot{display:grid;place-items:center;gap:8px;min-height:84px;border:2px dashed var(--bd);border-radius:14px;padding:10px;cursor:pointer;text-align:center;font-weight:700;color:var(--g2);background:var(--pc)}.cshot img{max-width:100%;max-height:180px;border-radius:10px;box-shadow:0 2px 8px #0003}.cshot img[hidden]{display:none}
+.cerr{background:#fde8ea;border:1px solid #f1a9b2;color:#8a1427;border-radius:12px;padding:8px 11px;font-size:13.5px;margin-bottom:10px;font-weight:600}.cerr[hidden]{display:none}
+#cok{text-align:center;padding:8px 0}#cok[hidden]{display:none}.cbig{font-size:54px}.cbt{font-size:20px;font-weight:800;color:var(--g2);margin:4px 0}#cok p{color:var(--mut);margin:0 0 14px;font-size:15px}
+
+/* ===== পুরস্কার ব্যানার (হেডারের নিচে) ===== */
+.pz{display:flex;align-items:center;gap:12px;width:calc(100% - 24px);margin:6px 12px 4px;padding:12px 14px;border:0;border-radius:20px;text-align:left;cursor:pointer;color:#3a1d00;font-family:inherit;position:relative;overflow:hidden;background:linear-gradient(115deg,#ffd84a,#ffb300 45%,#ff7a18);box-shadow:0 5px 0 #a85a00,0 10px 22px #ff7a1840;animation:pzp 2.6s ease-in-out infinite}
+.pz::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff88,transparent);transform:skewX(-20deg);animation:pzs 3.2s ease-in-out infinite}
+.pzi{font-size:34px;line-height:1;filter:drop-shadow(0 2px 2px #0003);animation:pzb 1.8s ease-in-out infinite}
+.pzt{display:flex;flex-direction:column;flex:1;min-width:0}.pzt b{font:800 16.5px/1.3 "MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",sans-serif}.pzt small{font-size:12.5px;font-weight:600;opacity:.85;margin-top:2px}
+.pzg{font-size:30px;font-weight:800;line-height:1;opacity:.7}
+.pz:active{transform:translateY(3px);box-shadow:0 2px 0 #a85a00}
+@keyframes pzs{0%{left:-60%}60%,100%{left:140%}}
+@keyframes pzb{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-4px) rotate(6deg)}}
+@keyframes pzp{0%,100%{filter:brightness(1)}50%{filter:brightness(1.07)}}
+body.focus .pz,body.quiz .fbfab{display:none}
+@media(prefers-reduced-motion:reduce){.pz,.pz::after,.pzi{animation:none}}
+/* ===== ভাসমান ফেসবুক বাটন ===== */
+.fbfab{position:fixed;z-index:30;bottom:calc(76px + env(safe-area-inset-bottom));right:max(12px,calc(50vw - 248px));display:flex;align-items:center;gap:7px;padding:10px 14px 10px 11px;border-radius:999px;background:#1877f2;color:#fff;font-weight:700;font-size:14px;text-decoration:none!important;box-shadow:0 4px 0 #0d4fa8,0 8px 18px #1877f255}
+.fbfab:active{transform:translateY(2px);box-shadow:0 2px 0 #0d4fa8}
+/* ===== পপ-আপের পুরস্কার অংশ ===== */
+.pzbox{background:linear-gradient(#fff7e0,#fff);border:1.5px solid #ffcf66;border-radius:16px;padding:4px 12px 12px;margin-bottom:6px}
+.pzbox h3{color:#a85a00}.pzh{font-size:16px;margin-bottom:2px}.pzbox p{margin:4px 0;font-size:15px}
+.pzs{padding-left:22px;display:grid;gap:5px;font-size:14.5px;line-height:1.5}
+.pzn{background:#e8f1ff;border-radius:10px;padding:8px 10px;font-size:13.5px!important;margin:10px 0 8px!important}
+.fbbtn{display:block;width:100%;margin:8px 0 0;padding:12px;border:0;border-radius:999px;background:#1877f2;color:#fff;font:700 15px inherit;font-family:inherit;cursor:pointer;box-shadow:0 3px 0 #0d4fa8}.fbbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #0d4fa8}
+.pzbox .btn.l{margin-top:8px}
+.cfbn{margin-top:10px;background:#e8f1ff;border-radius:12px;padding:9px 11px;font-size:13.5px}.cfbn small{display:block;margin-top:5px;color:var(--mut)}
+/* ===== বিকাশ নম্বর + টিক ===== */
+.cbk{position:relative}.cbk .in{padding-right:46px}.cbk .in.okin{border-color:#1d9e5b;box-shadow:0 0 0 3px #1d9e5b25}
+.bkok{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;background:#1d9e5b;color:#fff;display:grid;place-items:center;font-size:14px;line-height:1}.bkok[hidden]{display:none}
+.bkh{display:block;font-size:12px;color:var(--mut);margin-top:4px}
+.ctbox [data-pzh]{text-align:left;margin-top:8px}.ctbox [data-pzh][hidden]{display:none}.ctbox [data-pzh] .btn{width:100%;margin:6px 0}.ctbox [data-pzh] textarea{width:100%}
+.cann li b{display:inline;font-size:inherit;margin:0}
+
+.pzt{display:flex;align-items:center;justify-content:space-between;gap:8px}.pzt .pza{font-style:normal;font-size:18px}
+.ctbox.open{border-style:solid;border-color:var(--o);box-shadow:0 0 0 3px #ffcf6666}.ctbox.open .pzt{background:#fff;color:#a85a00;border:2px solid var(--o)}
+.pzw{margin:6px 0 0;font-size:14px;font-weight:700;color:#a85a00;background:#fff3c4;border-radius:10px;padding:8px 10px}
+
+.cmsgs{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:8px 12px;height:min(46vh,380px);overflow-y:auto;display:grid;align-content:start;gap:6px}
+.cmsgs p{margin:0;font-size:15px;line-height:1.45;overflow-wrap:anywhere}.cmsgs b{color:var(--g2);margin-right:4px}
+.cmsgs .rep{background:none;border:0;color:var(--mut);cursor:pointer;font-size:13px;padding:0 4px}
+.crow{display:flex;gap:8px;align-items:center}.crow .in{flex:1;min-width:0}.crow .btn{width:auto;padding:11px 18px}
+.tabbar a{min-width:0}
+.lbf{display:grid;gap:8px}.lbrow{display:flex;align-items:center;gap:10px;padding:9px 4px;border-top:1px solid var(--bd)}.lbrow:first-child{border-top:0}.lbk{min-width:40px;text-align:center;font-weight:800;font-size:16px;color:var(--g2)}.lbm{flex:1;min-width:0;overflow-wrap:anywhere}.lbs{text-align:right;flex:none}.lbs b{font-size:19px}
+
+/* কুয়িজের ছবি কখনো অফ হবে না: হোমের কোনো অন/অফ সেটিং এটা লুকাতে পারবে না */
+html[class] body #zb,html[class] body #zi,html[class] body .zbox{display:block!important;visibility:visible!important;opacity:1!important}
+html[class] body #zb{position:relative}
+
+/* ফেসবুক পেইজ বাটন: কুইজ (body.quiz) ছাড়া সব পেজে ভাসে; অন্য কোনো সুইচ এটাকে লুকায় না, শুধু অ্যাডমিনের নিজের সুইচ (g_fb) পারে। হোমের স্টার্ট বাটনের ওপরে সরে থাকে */
+body.dh .fbfab{bottom:calc(138px + env(safe-area-inset-bottom))}
+
+/* হোম ফর্ম: ভাসমান সাদা ঘর (ডিজাইন ১) — শুধু স্টাইল, ড্রপডাউন/বাটন আগের মতোই */
+body.dh .fcard{background:none;box-shadow:none;border:0;padding:4px 2px;gap:10px}
+body.dh .fcard .lbl{color:#fff;font-weight:600;font-size:13px;margin-bottom:-4px}
+body.dh .fcard .in{background:#fff;border:0;border-radius:16px;box-shadow:0 6px 18px #04281c55;min-height:48px}
+body.dh .fcard .seg button{background:#fff;border:0;color:#0f6b46;box-shadow:0 4px 12px #04281c44;border-radius:999px}
+body.dh .fcard .seg button.on{background:#ff4d6d;color:#fff;box-shadow:0 6px 16px #e11d4866}
+body.dh .fcard .rlink{color:#d3efe0}
+.lbpg{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:12px 0 4px}.lbpg button{font:700 14px inherit;min-width:38px;padding:6px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--fg);cursor:pointer}.lbpg button.on{background:var(--g);border-color:var(--g);color:#fff}
+/* পুরস্কারের জায়গায় ছোট লাইন: "পুরস্কার আপডেট পেতে পেইজে চোখ রাখুন" */
+.pzu{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;font-size:12.5px;font-weight:700;color:#a85a00;margin:6px 0;line-height:1.35;text-align:center}.pz .pzu{color:#3a1d00;margin:3px 0 0;font-size:12px}.ctlink .pzu{color:inherit;font-size:11.5px;margin:3px 0 0}.ctbox .pzu{margin:6px 0 2px}
+.pzc{display:inline-flex;align-items:center;background:linear-gradient(#ee4636,#c5221f);color:#fff;font-size:11px;font-weight:800;line-height:1.2;padding:3px 11px 4px;border-radius:999px;box-shadow:0 1px 0 #8f1d15,0 0 0 2px #ffffffa6;cursor:pointer;white-space:nowrap;animation:pzcp 1.8s ease-in-out infinite}.pzc:active{transform:translateY(1px)}@keyframes pzcp{50%{transform:scale(1.06)}}@media(prefers-reduced-motion:reduce){.pzc{animation:none}}
+
+/* কার্ড ১/২ বদলের বাটন */
+.cnav{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 14px;padding:10px;border-radius:16px;background:var(--chip)}
+.cnav[hidden]{display:none}
+.cnav button{min-width:46px;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+.cnav button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cnav button:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+
+.lbs{text-align:right}.lbrk{display:inline-block;margin:3px 0 1px;font:700 12px inherit;padding:3px 9px;border:1px solid var(--g2);border-radius:999px;background:transparent;color:var(--g2);cursor:pointer}
+.rhm{position:fixed;inset:0;background:#0009;z-index:99;display:grid;place-items:end center;padding:0}
+.rhb{background:var(--card,#fff);color:var(--fg,#111);width:min(100%,520px);max-height:86vh;overflow:auto;border-radius:16px 16px 0 0;padding:14px}
+.rhh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}.rhx{border:0;background:transparent;color:inherit;font-size:18px;cursor:pointer;padding:4px 8px}
+.rhn{background:var(--bg,#f3f6f4);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;margin-bottom:6px;font-size:14px}
+.rhr{display:grid;grid-template-columns:1.5fr .8fr 1.1fr;gap:6px;align-items:center;padding:8px 2px;border-top:1px solid var(--bd);font-size:13px}.rhr:first-child{border-top:0}
+.rhk{font-weight:800;text-align:right}.rhu{color:#1d6b43;font-weight:700}.rhd{color:#c0392b;font-weight:700}
+
+
+/* আগের কার্ড: আঙুল টেনে ডানে-বামে সব কার্ড দেখা (একবারে ৩টা) */
+.mcstrip{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none}
+.mcstrip::-webkit-scrollbar{display:none}
+.mcstrip>button{flex:0 0 calc((100% - 12px)/3);min-width:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:center;cursor:zoom-in;scroll-snap-align:start}
+.mcstrip img{width:100%;height:auto;border-radius:8px;display:block;background:var(--chip);-webkit-user-drag:none}
+.mcstrip .mn{font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mcstrip .ms{font-size:11px;opacity:.8}
+/* লিডারবোর্ড: সার্চ-খোলার বাটন (সার্চবারের মতো, ডানে ▾ চিহ্ন) */
+.lbt{display:flex;align-items:center;gap:10px;width:100%;margin:0 0 8px;padding:9px 12px;text-align:left;font-family:inherit;color:var(--fg);background:var(--card);border:1.5px solid var(--g2);border-radius:14px;box-shadow:0 2px 0 #0f6b4622;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lbt:active{transform:scale(.99)}
+.lbti{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--g2);font-size:17px;line-height:1}
+.lbtt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.lbtt b{font-weight:700;font-size:15px;line-height:1.3}
+.lbtt small{font-size:12px;color:var(--mut);line-height:1.3}
+.lbtc{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--chip);color:var(--g2);font-size:16px;line-height:1;transition:transform .2s}
+.lbt.on{background:var(--chip)}
+.lbt.on .lbtc{transform:rotate(180deg);background:var(--g2);color:#fff}
+/* র‍্যাংক হিস্টরি জানালার "🪪 কার্ড দেখো" বাটন */
+.rhcd{display:flex;align-items:center;justify-content:space-between;width:100%;margin:0 0 10px;padding:11px 14px;font-family:inherit;font-weight:700;font-size:15px;border:0;border-radius:12px;background:var(--g2);color:#fff;cursor:pointer}
+.rhcd i{font-style:normal;font-size:22px;line-height:1}
+.rhcd:active{opacity:.85}
+.rhcm{margin:-4px 0 8px;color:#b3261e}
+.rhcm:empty{display:none}
+
+/* হোম হেডার: বামে লোগো + ডানে ৫ নং হলুদ স্টিকারে ডোমেইন (ভাসমান) + ফুলঝুরি (home-seal.js) */
+.hh{display:none}
+body.hm .hd{position:relative;justify-content:flex-start;padding-top:10px;padding-bottom:4px}
+body.hm .hd>.brand,body.hm .hd>.tag{display:none}
+body.hm .hh{display:flex;align-items:center;gap:12px;min-width:0}
+.hlogo{display:block;flex:none;width:46px;height:46px;border-radius:12px;box-shadow:0 4px 12px #0005;line-height:0}
+.hlogo img{width:46px;height:46px;border-radius:12px;display:block}
+.dseal{position:relative;display:inline-flex;align-items:center;min-width:0;font-family:"Barlow Condensed","Anek Bangla","Hind Siliguri",system-ui,sans-serif;font-weight:800;letter-spacing:.4px;line-height:1;white-space:nowrap;user-select:none;-webkit-user-select:none;pointer-events:none}
+.dseal b{display:block;overflow:hidden;text-overflow:ellipsis;font-weight:800;font-size:26px}
+.dseal.s5{padding:7px 14px;border-radius:11px;background:#ffd84a;color:#10261b;box-shadow:0 4px 0 #b8860b,0 9px 14px #0004;border:2px dotted #10261b55;background-clip:padding-box;animation:dsfl 4.6s ease-in-out infinite}
+@keyframes dsfl{0%,100%{transform:translate(0,0)}25%{transform:translate(4px,-4px)}50%{transform:translate(0,-7px)}75%{transform:translate(-4px,-3px)}}
+#hsp{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:6}
+@media(prefers-reduced-motion:reduce){.dseal.s5{animation:none}#hsp{display:none}}
+
+/* হোম হেডার: বামে নতুন-জিপের "M + MC Explorer" ব্র্যান্ড, ডানে আগের ডোমেইন-স্টিকার (home-seal.js জায়গা বুঝে দুটোর লেখা ছোট-বড় করে) */
+.hbrand{display:none}
+body.hm .hbrand{display:flex;align-items:center;gap:8px;flex:none;font-family:"MCDigits","Anek Bangla","Hind Siliguri","Noto Sans Bengali","Nirmala UI",sans-serif;font-weight:800;font-size:17px;color:#fff;white-space:nowrap}
+.hbrand .hbt{overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 3px #0006}
+
+/* ফুলঝুরি ছোট + স্টিকারের নিচ থেকে; ক্যানভাস পেছনে, তাই স্টিকার/ব্র্যান্ড ও বাকি লেখার পেছন দিয়ে যায় */
+body.hm #hsp{z-index:0}
+body.hm .hh{position:relative;z-index:2}
+body.hm .pz,body.hm main,body.hm .xw{position:relative;z-index:1}
+
+/* ═══ হোম হেডার v2 (২০২৬-১০-৩০): "MC" উপরে, "Explorer" নিচে, ৪ গুণ বড়; লোগো ও ডোমেইন-স্টিকার আগের জায়গায়।
+   ডিজাইন A/B: body.hbA / body.hbB (home-seal.js বসায়; config.js brandVer বা ?hb=A|B)। আকার --hb (px) home-seal.js জায়গা বুঝে ঠিক করে। ═══ */
+body.hm .hh{display:grid;grid-template-columns:auto auto 1fr;grid-template-rows:auto auto;column-gap:12px;row-gap:0;align-items:center;width:100%}
+body.hm .hlogo{grid-column:1;grid-row:1/3;align-self:center}
+body.hm .hbrand{display:contents}
+body.hm .hb1,body.hm .hb2{position:relative;display:block;white-space:nowrap;line-height:.86;font-family:"Barlow Condensed","Anek Bangla","Hind Siliguri",system-ui,sans-serif;font-weight:700;font-size:var(--hb,42px);letter-spacing:.5px;text-transform:none}
+body.hm .hb1{grid-column:2;grid-row:1;align-self:end;justify-self:start}
+body.hm .hb2{grid-column:2/4;grid-row:2;align-self:start;justify-self:start;margin-top:2px}
+body.hm .hb1 i,body.hm .hb2 i{font-style:normal;display:inline-block}
+body.hm .hh .dseal{grid-column:3;grid-row:1;justify-self:start;align-self:center;margin-left:2px}
+body.hm .hbg{display:none}
+
+/* ── ডিজাইন A: নিয়ন-গ্লাস — MC সোনালি গ্রেডিয়েন্ট + ঝিলিক, Explorer অক্ষর একটা একটা করে উঠে ঢেউ খেলে, নিচে কম্পাস-রেখা আঁকা ── */
+body.hbA .hb1 i{background:linear-gradient(100deg,#fff6c9 0%,#ffd84a 38%,#ffb300 62%,#fff1a8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 0 #7a5200aa) drop-shadow(0 8px 14px #0006);background-size:220% 100%;animation:hbAs 3.6s linear infinite}
+@keyframes hbAs{0%{background-position:120% 0}100%{background-position:-120% 0}}
+body.hbA .hb2{color:#fff;text-shadow:0 2px 0 #0b6b4e,0 8px 16px #0005}
+body.hbA .hb2 i{opacity:0;transform:translateY(.35em) scale(.8);animation:hbAu .55s cubic-bezier(.2,1.3,.4,1) forwards,hbAw 3.2s ease-in-out 1.4s infinite}
+body.hbA .hb2 i:nth-child(1){animation-delay:.05s,1.4s}body.hbA .hb2 i:nth-child(2){animation-delay:.12s,1.5s}body.hbA .hb2 i:nth-child(3){animation-delay:.19s,1.6s}body.hbA .hb2 i:nth-child(4){animation-delay:.26s,1.7s}body.hbA .hb2 i:nth-child(5){animation-delay:.33s,1.8s}body.hbA .hb2 i:nth-child(6){animation-delay:.40s,1.9s}body.hbA .hb2 i:nth-child(7){animation-delay:.47s,2s}body.hbA .hb2 i:nth-child(8){animation-delay:.54s,2.1s}
+@keyframes hbAu{to{opacity:1;transform:none}}
+@keyframes hbAw{0%,100%{transform:translateY(0)}50%{transform:translateY(-.05em)}}
+body.hbA .hb2::after{content:"";position:absolute;left:0;bottom:-.1em;height:.07em;width:100%;border-radius:9px;background:linear-gradient(90deg,#ffd84a,#fff,#5ef0b4);transform-origin:left;transform:scaleX(0);animation:hbAl 1s .8s ease-out forwards;box-shadow:0 0 10px #ffd84a99}
+@keyframes hbAl{to{transform:scaleX(1)}}
+body.hbA .hb1::before{content:"";position:absolute;left:-.12em;top:50%;width:.9em;height:.9em;margin-top:-.45em;border-radius:50%;background:radial-gradient(circle,#ffd84a55,#ffd84a00 70%);z-index:-1;animation:hbAp 2.8s ease-in-out infinite}
+@keyframes hbAp{0%,100%{transform:scale(.8);opacity:.6}50%{transform:scale(1.25);opacity:1}}
+
+/* ── ডিজাইন B: ব্যাজ + কম্পাস — MC হলুদ ৩ডি চিপে (চাপা-ওঠা), Explorer সাদা আউটলাইন + চলমান গ্রেডিয়েন্ট ভরাট, পেছনে ঘূর্ণি কম্পাস-গ্রাফিক ও ভাসমান বিন্দু ── */
+body.hbB .hb1{align-self:end;justify-self:start;padding:.02em .14em .06em;border-radius:.2em;background:#ffd84a;color:#10261b;box-shadow:0 .06em 0 #b8860b,0 .14em .22em #0005;transform:rotate(-3deg);transform-origin:left bottom;animation:hbBb 3.4s ease-in-out infinite}
+@keyframes hbBb{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-.04em)}}
+body.hbB .hb1 i{animation:hbBp 3.4s ease-in-out infinite}
+@keyframes hbBp{0%,86%,100%{transform:scale(1)}92%{transform:scale(1.14)}}
+body.hbB .hb2{margin-top:.04em;color:#5ef0b4;-webkit-text-stroke:.03em #fff;filter:drop-shadow(0 .05em .1em #0006);letter-spacing:.04em}
+body.hbB .hb2 i{color:#5ef0b4;animation:hbBi 3s ease-in-out infinite,hbBc 4.8s linear infinite}
+body.hbB .hb2 i:nth-child(1){animation-delay:0s,0s}body.hbB .hb2 i:nth-child(2){animation-delay:.2s,-.6s}body.hbB .hb2 i:nth-child(3){animation-delay:.4s,-1.2s}body.hbB .hb2 i:nth-child(4){animation-delay:.6s,-1.8s}body.hbB .hb2 i:nth-child(5){animation-delay:.8s,-2.4s}body.hbB .hb2 i:nth-child(6){animation-delay:1s,-3s}body.hbB .hb2 i:nth-child(7){animation-delay:1.2s,-3.6s}body.hbB .hb2 i:nth-child(8){animation-delay:1.4s,-4.2s}
+@keyframes hbBc{0%,100%{color:#5ef0b4}33%{color:#ffd84a}66%{color:#ff8a5c}}
+@keyframes hbBi{0%,100%{transform:translateY(0)}50%{transform:translateY(-.045em)}}
+body.hbB .hbg{display:block;position:absolute;right:-6px;top:-4px;width:70px;height:70px;pointer-events:none;opacity:.35;z-index:-1;background:conic-gradient(from 0deg,transparent 0 80%,#fff 80% 82%,transparent 82% 100%),radial-gradient(circle,transparent 55%,#fff6 56% 58%,transparent 59%);border-radius:50%;animation:hbBr 9s linear infinite}
+@keyframes hbBr{to{transform:rotate(360deg)}}
+body.hbB .hh::after{content:"";position:absolute;left:62px;right:0;bottom:-6px;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,#ffd84a 0 10px,transparent 10px 18px);opacity:.75;animation:hbBd 1.2s linear infinite}
+@keyframes hbBd{to{background-position:18px 0}}
+@media(prefers-reduced-motion:reduce){body.hbA .hb1,body.hbA .hb1::before,body.hbA .hb2 i,body.hbA .hb2::after,body.hbB .hb1,body.hbB .hb1 i,body.hbB .hb2 i,body.hbB .hbg,body.hbB .hh::after{animation:none!important}body.hbA .hb2 i{opacity:1;transform:none}body.hbA .hb2::after{transform:none}}
+
+/* ফিক্স (২০২৬-১০-৩০): হোমে main/pz/xw-এর z-index:1 স্টিকি ট্যাব-বার ও ফুটারের ওপরে উঠে ক্লিক আটকাত — ট্যাব-বার ও ফুটারকে ওপরে আনা হলো */
+.tabbar{z-index:25}
+footer{position:relative;z-index:3}
+
+.fbq-q{font-size:15.5px;font-weight:700;line-height:1.5;margin:2px 0 4px}.fbq-n{font-size:12.5px;color:var(--mut);margin:2px 0 10px}
+.fbop{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--bd);border-radius:14px;margin:0 0 8px;cursor:pointer;background:#fff;font-size:15px}
+.fbop.on{border:2px solid var(--g);background:#e7f3ec;padding:9px 11px}.fbop input{margin:3px 0 0;flex:none;width:18px;height:18px;accent-color:var(--g)}
+.fbop b{display:block;font-weight:700}.fbop small{display:block;font-size:12px;color:var(--mut);margin-top:1px}
+.fbsub{margin:0 0 8px 14px;padding-left:10px;border-left:2px solid var(--bd)}.fbsub[hidden],.fbqe[hidden]{display:none}.fbsl{font-size:12.5px;color:var(--mut);font-weight:700;margin:0 0 6px}
+.fbqe{font-size:13.5px;color:#b42318;margin:0 0 8px;font-weight:600}.fbfm{border:1px solid var(--bd);border-radius:14px;padding:10px 12px;background:#fff}.fbfm .fbop{padding:8px 10px;font-size:14px}.fbfm .fbop.on{padding:7px 9px}
+
+/* ২০২৬-১২-২০: নিচের ট্যাবে "🏅 বিজয়ী" (চ্যাটের ডানে) — winners.js চালু থাকলে ও বিজয়ী থাকলে তবেই দেখায়; ক্লিকে হোমের মতোই বিজয়ী তালিকা (#winners) খোলে */
+.tabbar a[hidden]{display:none}.tabbar.t6{grid-template-columns:repeat(6,1fr)}.tabbar.t6 a{font-size:11px}.tabbar.t6 a i{font-size:18px}

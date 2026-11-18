@@ -1,0 +1,216 @@
+কোন ফাইল কী করে, আর একটা ফাইল আলাদা আপডেট করবেন কীভাবে
+
+নিয়ম: সমস্যা হলে শুধু যে ফাইলে সমস্যা সেটাই বদলান বা আবার আপলোড করুন। বাকিগুলো ছুঁতে হবে না।
+নতুন ফাইল যোগ করলে শুধু index.html-এ তার <script>/<link> ট্যাগ বসান; /status.html নিজে থেকেই সেটা পরীক্ষায় ধরবে।
+কোন ফাইলে সমস্যা, দেখতে: আপনার সাইটের ঠিকানার শেষে /status.html লিখে খুলুন (লাল চিহ্নিত ফাইল আবার আপলোড করুন)।
+
+সাইট (রুটে; ২০২৬-১০-২৯ থেকে ফোল্ডার ছাড়া) — 
+  index.html     সাইটের কাঠামো
+  style.css      রঙ ও সাজ                          → চেহারা বদলাতে শুধু এটা
+  design.css     নতুন সবুজ ডিজাইন (সব পাতা, হেডার, হোম ফর্ম, অভিনন্দন প্যানেল, পুরস্কার ফর্ম) → style.css-এর পরে লোড; মুছলে আগের চেহারা ফেরে
+  app.js         সব পর্দা, ফর্ম, খেলা, লিডারবোর্ড    → আচরণ বদলাতে শুধু এটা
+  data.js        জায়গা, প্রশ্ন, বিভাগ, ক্লাসের নাম/রঙ  → প্রশ্ন/বিভাগ বদলাতে শুধু এটা
+  card.js        স্কোর কার্ড ও ৯:১৬ স্টোরি কার্ড (ছবি, ক্লাস প্লেট)→ কার্ডের ডিজাইন বদলাতে শুধু এটা
+  titles.js      মজার উপাধি                          → উপাধি বদলাতে শুধু এটা
+  qr.js          কার্ডের QR                          (না থাকলে কার্ডে QR আসে না, বাকি চলে)
+  ui-config.js   হোম/নিয়ম-পপআপ/ফল-কার্ডের অংশ অন-অফ হুক (না থাকলে সব আগের মতো দেখায়) → ছোট ফাইল
+  admin-home.js  অ্যাডমিনের 🏠 হোম ট্যাব (অন-অফ সুইচ)  | supabase-ui-settings.sql = এর একবারের SQL
+  config.js      Supabase ও siteUrl                  → ঠিকানা/Supabase বদলাতে শুধু এটা
+  contest.js     শেয়ার করে পুরস্কার জেতার ফর্ম + ঘোষণার লেখা  (না থাকলে ফর্ম আসে না, বাকি চলে) → ঘোষণা/লেখা বদলাতে শুধু এটা
+  pin.js         পুরোনো সাইটের পিন বাটন               (না থাকলে বাটন কাজ করে না, বাকি চলে)
+  admin.html, admin.js, admin-gallery.js   অ্যাডমিন প্যানেল (ঠিকানা: /admin) — admin-gallery.js = ড্যাশবোর্ড, ছবির গ্যালারি, কুইজ সেটিংস, প্রশ্ন, উত্তর ও ফল
+  supabase-gallery.sql  ক্যাটাগরি, কুইজ সেটিংস, অটো প্রশ্ন, উত্তর সংরক্ষণ, ড্যাশবোর্ডের SQL (একবার Supabase SQL Editor-এ চালাতে হয়)
+  admin-setup.txt       অ্যাডমিন সেটআপের ধাপ (বাংলায়)
+  images/        লোগো ও আইকন
+  sw.js, manifest.webmanifest   ফোনে অ্যাপের মতো রাখা (ঐচ্ছিক)
+
+পুরোনো সাইট এখন আলাদা প্রজেক্ট/জিপ (old-site)। এই সাইটের সাথে নেই; পিন-বাটন config.js-এর oldUrl-এ যায়।
+
+আপডেটের পর পুরোনো চেহারা দেখালে: ব্রাউজারে পেজ রিফ্রেশ করুন (Ctrl+Shift+R / ফোনে ট্যাব বন্ধ করে আবার খুলুন)।
+  supabase-titles.sql  উপাধি কাউন্টারের SQL (একবার Supabase SQL Editor-এ চালাতে হয়; সাইট চালাতে লাগে না)
+  supabase-contest.sql  ফর্মের জমা, স্ক্রিনশট ও সাপ্তাহিক লটারির SQL (একবার Supabase SQL Editor-এ চালাতে হয়; config.js-এ url/key লাগে)
+
+  anonchat.js  বেনামি চ্যাট (Messenger-স্টাইল; ঠিকানা #anon; footer-এর Chat লিংক ও হোমের "বেনামি চ্যাট করুন" বাটন এখানে খোলে)  (না থাকলে চ্যাট খোলে না, বাকি চলে)
+  admin-anonchat.js  অ্যাডমিনের "💬 বেনামি চ্যাট" ট্যাব: বিভাগ, সেশন, বার্তা নিয়ন্ত্রণ
+  admin-badges.js  অ্যাডমিনের 🏅 বেইজ: ১৫টা রেডিমেড + নিজের বানানো, একজনকে একাধিক, সম্পাদনা/মোছা/বাছাদের একসাথে | supabase-new-20261025.sql = একবারের SQL
+  supabase-anonchat.sql  বেনামি চ্যাটের সব SQL এক ফাইলে (ফাইল আপলোড ON/OFF সহ; একবার Supabase SQL Editor-এ চালাতে হয়)
+
+  presence.js  অনলাইন স্ট্যাটাস/ভিজিটর (প্রতি ৩০ সেকেন্ডে সংকেত; পেজ বন্ধে অফলাইন)  (না থাকলে অনলাইন তথ্য আসে না, বাকি চলে)
+  admin-users.js  অ্যাডমিনের "👤 User Info" ট্যাব + ড্যাশবোর্ডের অনলাইন বক্স (Online Count, Visitor List, Join/Leave, Last Active)
+  supabase-userinfo.sql  User Info/অনলাইনের সব SQL এক ফাইলে (একবার Supabase SQL Editor-এ চালাতে হয়)
+  sql-status.md  কোন SQL চালানো আছে ও কোনটা বাকি, আর আপডেটের পর আর্টিফেক্ট দেওয়ার নিয়ম (নতুন চ্যাটে আপলোড করলে AI এটা পড়ে বুঝে নেয়)
+  supabase-pending-all.sql  এখনো না চালানো সব SQL এক ফাইলে (গ্যালারি + বেনামি চ্যাট + User Info); একবার চালালেই হয়
+
+  mc2 চ্যাট মডারেশন (নতুন):
+  admin-moderation.js  অ্যাডমিনের "🛡️ মডারেশন" ট্যাব: রিপোর্ট (কারণ/ইতিহাস), বার্তা মোছা, সতর্ক, সাময়িক Restriction/ব্যান, Unban, যাচাই (Verify), Review তালিকা, ফাইল আপলোড সেটিংস
+  supabase-moderation.sql  মডারেশন + রেট লিমিট + ফাইল যাচাই + নিরাপদ স্টোরেজের সব SQL (একবার Supabase SQL Editor-এ চালাতে হয়; বাকি তিনটির পরে)
+  (anonchat.js আপডেট: অনুমোদিত ফাইলের তালিকা, 📎 বোতাম ON/OFF অনুযায়ী নিষ্ক্রিয়, রিপোর্ট বোতাম, সতর্কতা/ব্যান বার্তা)
+
+  supabase-live-board.sql  লাইভ টাইপিং + Join/Leave মেসেজ + লিডারবোর্ডের ফিল্টার/র‍্যাংক (একবার চালাতে হয়; মডারেশনের পরে)
+  admin-results.js  অ্যাডমিনের "📊 ফলাফল" ট্যাব: ফিল্টার (বিভাগ, সেশন, তারিখ, নাম), র‍্যাংক, CSV ডাউনলোড
+  (app.js লিডারবোর্ড নতুন; community.js-এ mcBoardQ; style.css-এ লিডারবোর্ডের সাজ; anonchat.js-এ টাইপিং/Join/Leave)
+
+  app.js (2026-10-17): কার্ড বিল্ডার + লাইভ প্রিভিউ, PNG সাইজ সীমা অ্যাডমিন প্যানেল থেকে (ডিফল্ট ০ = পূর্ণ হাই কোয়ালিটি), কাছাকাছি নামের ভুল অপশন — app.js, community.js, admin-gallery.js + (SQL এখনো না চালালে) supabase-pending-all.sql
+
+  কার্ড সংরক্ষণ + সেরা ৩ (নতুন, 2026-10-17):
+  cards.js  ইউজারের কার্ডের ছোট প্রিভিউ+ছবি সার্ভারে জমা, আর লিডারবোর্ডের ওপরে সেরা ৩ জনের ছবি ও কার্ড প্রিভিউ (ক্লিকে ফুল কার্ড); অ্যাডমিনও এটা দিয়ে কার্ড আঁকে  (না থাকলে ফিচার আসে না, বাকি চলে)
+  admin-cards.js  অ্যাডমিনের "🪪 কার্ড" ট্যাব: সবার ছোট নমুনা কার্ড, ক্লিকে বড় প্রিভিউ, ফুল কোয়ালিটি কার্ড/স্টোরি ডাউনলোড, টপ ৩-এ ছবি লুকানো, মোছা
+  supabase-cards.sql  mc2_cards টেবিল + mc2_card_save + mc2_top_cards (একবার Supabase SQL Editor-এ চালাতে হয়; supabase-live-board.sql-এর পরে)
+  (বদলানো ফাইল: app.js-এ ৫টি ছোট হুক; index.html-এ cards.js ট্যাগ; admin.html-এ data/qr/card/cards/admin-cards স্ক্রিপ্ট ও ফন্ট; রুটের _headers-এ অ্যাডমিন পেজের CSP-তে Google Fonts অনুমতি)
+
+  (⚠️ পুরোনো নিয়ম — এখন চলে না; এখনকার নিয়ম sql-status.md-এর "DELIVERY v3": আপডেট জিপ + একটাই ফুল জিপ। mc-explorer-site.html এই ফোল্ডারে নেই।) ৩ ফাইলের নিয়ম: নতুন চ্যাটে আপলোড করলে AI সবসময় (১) ফুল জিপ (২) mc-explorer-site.html (পুরো সাইট এক HTML) (৩) supabase-pending-all.sql দেবে — claude.md ও sql-status.md-তে লেখা আছে।
+
+  supabase-part-1-of-5.sql … supabase-part-5-of-5.sql  supabase-pending-all.sql-এরই ৫ ভাগ (প্রতিটি ~২০ KB, মন্তব্য-লাইন বাদ); Supabase-এ বড় পেস্ট ধীর হলে ক্রমে একটা একটা চালান।
+
+  অ্যাডমিন আপডেট (2026-10-17, নতুন SQL লাগে না):
+  admin-cards.js  কার্ড ট্যাব: প্রিভিউ + নিচে ডাউনলোড লিংক (কার্ড ও স্টোরি); ফাইলের নাম ইংরেজি অক্ষরে; যেখানেই নাম (data-uu / data-dev / data-sid) সেখানে পাশে "🪪 কার্ড" ও "ℹ️ ইনফো" বাটন নিজে বসে
+  admin-users.js  User Info-তে "ফোন মডেল" সারি + "🪪 কার্ড দেখুন" বাটন
+  admin-results.js, admin-gallery.js  ফলাফল ও উত্তর ট্যাবে নামের চিহ্ন (পাশে কার্ড/ইনফো আসে)
+  community.js  ফোনের মডেল (ব্রাউজারের অনুমোদিত হিন্ট থেকে) ডিভাইস তথ্যে যোগ হয়; পুরোনো ইউজারের মডেল নতুন করে সাইট খুললে আসে
+
+  admin-prize.js  অ্যাডমিনের "🎁 পুরস্কার" ট্যাব (ফিল্টার/সাজানো, 🎰 লটারি চাকা, বিজয়ীর কার্ড/ইনফো, আগের বিজয়ী বাদ, ফেসবুক-পোস্টার + ক্যাপশন কপি; নতুন SQL লাগে না; না থাকলে পুরোনো পুরস্কার ট্যাব চলে)
+
+  winners.js  সাইটে "বিজয়ীদের তালিকা" বাটন ও পেজ (#winners); অ্যাডমিন থেকে অফ করলে কিছুই দেখায় না  (না থাকলে বাটন আসে না, বাকি চলে)
+  admin-winners.js  অ্যাডমিন "🏅 বিজয়ী ঘোষণা" ট্যাব: তারিখ+বর্ণনাসহ সেভ, কাস্টম লিস্ট থেকে লটারি, দেখান/লুকান, পেজ অন/অফ
+  admin-wcard.js  কার্ড পপআপে "🏆 বিজয়ী কার্ড (N)" প্যানেল + "🏆 বিজয়ী কার্ড সেটিংস" ট্যাব (SQL নেই)
+  changes-20261202-winner-card-in-user-popup.md  ইউজার কার্ড পপআপে বিজয়ী কার্ড, বানান, সংখ্যা, সেটিংস পেজ
+  supabase-new-20261017.sql  বিজয়ী ঘোষণা + কাস্টম লিস্ট + অন/অফের নতুন SQL (একবার চালাতে হয়)
+
+  delivery-tool/make-download-page.py  AI-এর জন্য: প্রতি আপডেটের পর ডাউনলোড-পেজ (আর্টিফ্যাক্ট) বানানোর স্ক্রিপ্ট; সাইটে লাগে না
+
+  supabase-new-20261017b.sql  বিভাগ-ভিত্তিক চ্যাট/অ্যাটাচমেন্ট মোছার সময় + সক্রিয় ইউজার ও ব্যান তালিকা + ভিজিটর ট্যাবের অনলাইন তালিকা (একবার Supabase SQL Editor-এ চালাতে হয়)
+  supabase-new-20261017c.sql  কাস্টম কার্ড সাইজ (চওড়া×উচ্চতা) + PNG KB ইচ্ছামতো/আনলিমিটেড সেটিংস (একবার Supabase SQL Editor-এ চালাতে হয়)
+
+admin-lottery.js — অ্যাডমিন লটারি v2: ফোল্ডার, একাধিক লিস্ট, টেস্ট/রিয়েল, ফেসবুক ফোল্ডারের নাম-বাক্স (admin.html-এ লোড হয়)
+supabase-new-20261018.sql — লটারি ফোল্ডার + ভেরিফাই ফ্ল্যাগের SQL (✅ চালানো)
+admin-pnote.js — অ্যাডমিন: পুরস্কার দেওয়া হয়েছে/হয়নি + ব্যক্তিগত নোট (🎁 ট্যাব + বিজয়ী ঘোষণার ফর্মে)। SQL: supabase-new-20261018d.sql
+  admin-board.js  অ্যাডমিনের "🏆 লিডারবোর্ড সেটিংস" ট্যাব (পুরো লিডারবোর্ড অন/অফ, এন্ট্রি এডিট/লুকানো/ডিলিট/ছবি, বাল্ক, ফিল্টার; "🏅 বিজয়ী ঘোষণা" ট্যাবের নিচেও আসে) | supabase-new-20261018j.sql = এর একবারের SQL (চ্যাটের ফাইল টাইপ SQL-ও এতে)
+
+
+আপডেট (2026-10-19, নতুন SQL: supabase-new-20261019.sql):
+  cards.js  নতুন কার্ড সেভে থাম্ব ২৪০ px/কোয়ালিটি ০.৬২ (আগে ৪২০ px/০.৭৪); ডাউনলোড ও বড় প্রিভিউ ফুল সাইজে rec+photo থেকে আঁকে, তাই অপরিবর্তিত
+  admin-cleanup.js  অ্যাডমিনের নতুন '🧹 অটো-ক্লিন' ট্যাব: DB কত % ভরা, মোছার নিয়ম (০ = কখনো না), পরীক্ষা/এখনই চালান, সাম্প্রতিক মোছার তালিকা (admin.html-এ স্ক্রিপ্ট ট্যাগ যোগ)
+  supabase-new-20261019.sql  ইনডেক্স, আইপি-সীমা, pinned, অটো-ক্লিনআপ ফাংশন
+
+আপডেট (2026-10-20, ধাপ ০ ভাগ ১, নতুন SQL লাগে না):
+  admin-hub.js  অ্যাডমিনের নতুন '🧭 শুরু করুন' ট্যাব: ধাপ-ফিতা, নিচের কোণে ? সাহায্য, ট্যাবের রং ও এক লাইনের ব্যাখ্যা, সহজ/বিস্তারিত সুইচ (admin.html-এ স্ক্রিপ্ট ট্যাগ যোগ; admin.js বদলায়নি)
+  admin.html  admin-hub.js-এর ট্যাগ যোগ | sw.js  ক্যাশ ভার্সন mc-challenge-4
+
+আপডেট (2026-10-20, ধাপ ০ ভাগ ২, নতুন SQL লাগে না):
+  admin-ux.js  অ্যাডমিনে বাংলা লেবেল, ✅/❌ ফল-লাইন (উপরে), দুই-ধাপ নিশ্চিতকরণ, বন্ধ বাটনের কারণ, পরের ধাপ বাটন (admin.html-এ স্ক্রিপ্ট ট্যাগ যোগ)
+  admin-gallery.js  '📝 প্রশ্নভিত্তিক উত্তর' ট্যাব আলাদা কী (ans) পেল, আগে ফলাফল ট্যাবের কী (res)-এর সাথে ডাবল ছিল | admin-hub.js  পরের ধাপ বাটন | sw.js  mc-challenge-5
+
+আপডেট (2026-10-20, ধাপ ০ ভাগ ৩, নতুন SQL লাগে না):
+  admin-keep.js  অ্যাডমিনে শেষ ট্যাব ও খোঁজার লেখা মনে রাখা, ফিল্টার-চিপ, না-সেভে সতর্কতা ও '↩ খোলার সময়ের মানে ফিরুন', ট্যাবে লাল সংখ্যা/চিহ্ন, মোবাইলের বড় বাটন, প্রথমবারের গাইড-ট্যুর (admin.html-এ স্ক্রিপ্ট ট্যাগ যোগ)
+  admin-ux.js, admin-hub.js  ছোট বদল (পোলিং-কল চুপ, ট্যুর বাটন) | sw.js  mc-challenge-6
+  supabase-new-20261022.sql  অটো-ক্লিন: কাটার ক্রম ২%→৩%→৫%, ২৪ ঘণ্টায় ৩ বার ৯০% ছুঁলে সতর্কবার্তা (আগে ...21b চালানো থাকতে হবে)
+
+  supabase-new-20261024.sql  জেন্ডার কলাম/ট্রিগার, ভিজিটর লিস্টে ফোন+ডিভাইস info, mc2_admin_genders() (✅ চালানো)
+  community.js, admin-users.js, admin-board.js, admin-cards.js, admin-results.js, admin-winners.js, admin-lottery.js  জেন্ডার চিহ্ন ও বাড়তি ব্রাউজার তথ্য | sw.js  mc-challenge-17
+
+  changes-20261030-logo-picker-fix.md  লিডারবোর্ড/বিজয়ী বোর্ডে লোগো-ড্রপডাউন অ্যাডমিন সুইচ মানে (cards.js, logo-config.js, sw.js)
+  supabase-new-20261030.sql  র‍্যাংক হিস্টরি (mc2_rank_history) — পুনর্গঠিত সংস্করণ; লাইভে আসলটা চালানো আছে, লাইভে আবার চালাবেন না; শুধু নতুন প্রজেক্টে
+  changes-20261030-winner-card-select.md  ভাগ ২: বিজয়ী তালিকায় কার্ড নির্বাচন (cards.js, winners.js, admin-winners.js, admin-prize.js)
+  changes-20261123-winner-card-design-only.md  বিজয়ী কার্ড: সার্ভারে ছবি নয়, শুধু ডিজাইন-নম্বর (pd) + ফোনেই আঁকা; poster-draw.js, admin-winners.js, cards.js, winners.js, admin-prize.js, admin.html
+  supabase-new-20261123.sql  mc2_draw_clean-এ cv/pd + mc2_winner_photo (✅ চালানো); আগের mc2_wcards সরায়
+  poster-draw.js  পোস্টার (বিজয়ী কার্ড) আঁকার কোড — অ্যাডমিন ও পাবলিক দুই জায়গায়; পাবলিকে শুধু কার্ড খুললে লোড হয়
+  changes-20261124-winner-card-switches.md  বিজয়ী তালিকা: বিজয়ী কার্ড / স্কোর কার্ড / ছবি অটো আনা — তিন সুইচ (ডিফল্ট চালু); ui-config.js, cards.js, admin-board.js
+  supabase-new-20261124.sql  mc2_card_peek + mc2_winner_photo-তে নতুন সুইচ (✅ চালানো)
+  supabase-new-20261125.sql  মোছার নিরাপত্তা: কার্ড-ডিলিটে সব বিনে ও ফেরানো, চ্যাট ফাইল মোছা, shot_url https (✅ চালানো)
+changes-20261126-csp-csv-userdel-logo.md  CSP মেলানো (_headers = netlify.toml), CSV ফর্মুলা-পরিষ্কার, ইউজার মোছায় আবার-চেষ্টা, লোগো ট্যাবে না-সেভ বদল রক্ষা; কোনো SQL নেই
+  changes-20261030-delete-safety.md  মোছার নিরাপত্তা আপডেটের নোট
+
+══ আসল ফাইলের তালিকা (২০২৬-১০-৩০, ফোল্ডার থেকে হুবহু; ওপরের বর্ণনা ইতিহাস, এই তালিকাই ঠিক) ══
+নোট: ফাইলের নাম ছোট হাতের (sql-status.md, claude.md, admin-setup.txt, delivery-tool/)। SQL কোনটা চালানো তা শুধু sql-status.md-এ দেখুন।
+
+কোড/সেটিং (52):
+  .github/workflows/keepalive.yml, _headers, admin-anonchat.js, admin-badges.js, admin-bin.js, admin-board.js, admin-cards.js, admin-cleanup.js, admin-folders.js, admin-gallery.js, admin-home.js, admin-hub.js, admin-keep.js, admin-logos.js, admin-lottery.js, admin-moderation.js, admin-pnote.js, admin-prize.js, admin-results.js, admin-users.js, admin-ux.js, admin-winners.js, admin-xlsx.js, admin.html, admin.js, anonchat.js, app.js, card.js, cards.js, community.js, config.js, contest.js, data.js, delivery-tool/make-download-page.py, favicon.ico, float-search.js, home-seal.js, index.html, logo-config.js, manifest.webmanifest, netlify.toml, pin.js, poster-draw.js, presence.js, qr.js, scroll-btn.js, status.html, style.css, sw.js, titles.js, ui-config.js, winners.js
+
+SQL (62) — চালানোর অবস্থা: sql-status.md:
+  supabase-additions.sql, supabase-anonchat.sql, supabase-cards.sql, supabase-community.sql, supabase-contest.sql, supabase-everything-for-new-project.sql, supabase-gallery.sql, supabase-live-board.sql, supabase-moderation.sql, supabase-new-20261017.sql, supabase-new-20261017b.sql, supabase-new-20261017c.sql, supabase-new-20261017d.sql, supabase-new-20261018.sql, supabase-new-20261018b.sql, supabase-new-20261018d.sql, supabase-new-20261018e.sql, supabase-new-20261018f.sql, supabase-new-20261018g.sql, supabase-new-20261018h.sql, supabase-new-20261018i.sql, supabase-new-20261018j.sql, supabase-new-20261018k.sql, supabase-new-20261018l.sql, supabase-new-20261019.sql, supabase-new-20261019b.sql, supabase-new-20261019c.sql, supabase-new-20261019d.sql, supabase-new-20261020.sql, supabase-new-20261020b.sql, supabase-new-20261020c.sql, supabase-new-20261021.sql, supabase-new-20261021b.sql, supabase-new-20261022.sql, supabase-new-20261023.sql, supabase-new-20261024.sql, supabase-new-20261025.sql, supabase-new-20261029.sql, supabase-new-20261030.sql, supabase-new-20261101.sql, supabase-new-20261102.sql, supabase-new-20261103.sql, supabase-new-20261105.sql, supabase-new-20261108.sql, supabase-new-20261109.sql, supabase-new-20261110.sql, supabase-new-20261111.sql, supabase-new-20261113.sql, supabase-new-20261117.sql, supabase-new-20261118.sql, supabase-new-20261123.sql, supabase-new-20261124.sql, supabase-new-20261125.sql, supabase-part-1-of-5.sql, supabase-part-2-of-5.sql, supabase-part-3-of-5.sql, supabase-part-4-of-5.sql, supabase-part-5-of-5.sql, supabase-pending-all.sql, supabase-titles.sql, supabase-ui-settings.sql, supabase-userinfo.sql
+
+নোট/নির্দেশ (7):
+  admin-setup.txt, agents.md, claude.md, deploy.md, files.txt, readme.txt, sql-status.md
+
+পরিবর্তনের নোট changes-*.md (75 টি, নাম-তারিখ ক্রমে)
+
+ছবি images/ (42):
+  images/apple-touch-icon.png, images/favicon-16.png, images/favicon-32.png, images/favicon-48.png, images/favicon-96.png, images/icon-192.png, images/icon-512.png, images/icon-maskable-512.png, images/logo-card-explorer.png, images/logo-explorer.png, images/logo-mc.png, images/logo-nu.png, images/og.jpg, images/og.png, images/places/academic.jpg, images/places/admin.jpg, images/places/aerial.jpg, images/places/chatro.jpg, images/places/chem.jpg, images/places/gate1.jpg, images/places/gate2.jpg, images/places/jarul.jpg, images/places/kola1.jpg, images/places/kola2.jpg, images/places/library.jpg, images/places/map.jpg, images/places/mohona.jpg, images/places/pond.jpg, images/places/thumb/academic.jpg, images/places/thumb/admin.jpg, images/places/thumb/aerial.jpg, images/places/thumb/chatro.jpg, images/places/thumb/chem.jpg, images/places/thumb/gate1.jpg, images/places/thumb/gate2.jpg, images/places/thumb/jarul.jpg, images/places/thumb/kola1.jpg, images/places/thumb/kola2.jpg, images/places/thumb/library.jpg, images/places/thumb/map.jpg, images/places/thumb/mohona.jpg, images/places/thumb/pond.jpg
+  admin-xlsx.js  অ্যাডমিনের ⬇ এক্সেল ফাইলের কমন ডিজাইন (২০২৬-১২-০৯, ধাপ ৩; এখন শুধু 📊 ফলাফল ট্যাব) | changes-20261209-excel-design.md = নোট (নতুন SQL নেই)
+  admin-xdlg.js  অ্যাডমিনের ⬇ এক্সেল ডাউনলোড-ফিল্টার জানালা: ফিল্টার + কলাম নির্বাচক + ফোল্ডার ফিল্টার (২০২৬-১২-১০, ধাপ ৪; এখন শুধু 📊 ফলাফল ট্যাব) | admin-xlsx.js (কলাম বাছাই), admin-results.js (জানালা খোলা), admin.html (script ট্যাগ), sw.js mc-challenge-153 | changes-20261210-xlsx-filter-dialog.md = নোট (নতুন SQL নেই)
+  admin-xtab.js  অ্যাডমিনের বাকি ট্যাবে ⬇ এক্সেল (সাজানো) বাটন + ডাটা-আনা ও ফিল্টার-হিসাব: সার্ভে, লিডারবোর্ড সেটিংস, স্কোর, ভিজিটর, User Info, পুরস্কার ও নোট (২০২৬-১২-১১, ধাপ ৫-ক; নতুন SQL নেই; ধাপ ৫-খ-তে যোগ: 🪪 কার্ড, 🏅 বিজয়ী ঘোষণা, 🏆 বিজয়ী কার্ড সেটিংস, 🖼 কুইজ ছবি, 🖼️ ছবির গ্যালারি, 📁 ফোল্ডার (সাধারণ/বিজয়ী; স্মার্ট ফোল্ডার নয়); ধাপ ৫-গ-তে 💬 চ্যাট, 💬 বেনামি চ্যাট, 🛡 মডারেশন, 🗑 বিন; ধাপ ৫-ঘ: কার্ড ট্যাবে 🖼 কার্ড প্রিভিউ (থাম্বনেইল, ঐচ্ছিক) — admin-xdlg.js, admin-xlsx.js)
+  admin-diff.js  অ্যাডমিনের "🎯 কুইজ কঠিনতা" ট্যাব: কোন ছবি কত % ভুল (শুধু বিদ্যমান উত্তরের ডাটা, নতুন SQL নেই) (ভাগ ১) | admin.html (script ট্যাগ), changes-20261212-quiz-difficulty.md = নোট
+  admin-cards.js  (ভাগ ২ক) 🪪 কার্ড ট্যাব: সেশন ফিল্টার, ফিল্টার অনুযায়ী মোট কার্ড ও আনুমানিক MB, ⭐ পছন্দের কার্ড (শুধু এই ব্রাউজারে, নতুন SQL নেই) | sw.js mc-challenge-154, changes-20261213-cards-filter-fav.md = নোট
+  admin-winners.js, admin-survey.js, admin-bin.js  (ভাগ ২খ, নতুন SQL নেই) বিজয়ী: "📋 এই বাছাই সবাইকে কপি" (cv, pd; শুধু ড্রাফটে) · সার্ভে: অপশনের পাশে শতাংশ-বার · বিন: "কতদিন পরে মুছবে" (সেটিংয়ের bin_days থেকে) | sw.js mc-challenge-155, changes-20261214-winner-copy-survey-bar-bin-expiry.md = নোট
+  admin-qimg.js, admin-winners.js, admin-results.js, admin-bin.js  (ভাগ ২গ, নতুন SQL নেই) কুইজ ছবি: ছবির হিসাব + ছবি-ছাড়া প্রশ্নের তালিকা ও ট্যাপে প্রিভিউ · বিজয়ী: "👁 পাবলিকে কেমন দেখাবে" প্রিভিউ · ফলাফল: তারিখ দ্রুত-বাছাই + উল্টো তারিখের সতর্কতা · বিন: "↩ সব ফেরান" | sw.js mc-challenge-156, changes-20261215-quiz-overview-winner-preview-results-dates-restore-all.md = নোট
+  admin-export.js, admin-cards.js  (ভাগ ৩, নতুন SQL নেই) 🪪 কার্ড ট্যাবে "📦 ZIP": নির্বাচন-জানালা (সংখ্যা ১০–১০০, বিভাগ, সেশন, বিজয়ী, সময়) → কার্ড JPG (১০০ KB-এর নিচে) + তথ্যসহ এক্সেল + PDF (A4, ক্রমিক); JSZip 3.10.1 ও jsPDF 2.5.1 (cdnjs, শুধু /admin-এর CSP-তে অনুমতি) | sw.js mc-challenge-157, changes-20261216-card-zip-export.md = নোট
+  social-draw.js, admin-social.js  (ভাগ ৪, নতুন SQL নেই) অ্যাডমিন "📣 সোশ্যাল": পোস্ট/স্টোরি টেমপ্লেট ক্যানভাসে, সার্ভারে কিছু জমে না
+  social-draw.js, admin-social.js, admin-hub.js  (ভাগ ৪ বাকি অংশ, নতুন SQL নেই) সময় শেষ N দিন/তারিখ-থেকে-পর্যন্ত, কতজন, সেশন-ভিত্তিক, পোডিয়াম, লাকি ড্র, উন্নতি, নতুন রেকর্ড, বিভাগ বনাম বিভাগ, অংশগ্রহণ, ধন্যবাদ, রিমাইন্ডার | sw.js mc-challenge-158, changes-20261218-social-more.md = নোট
+  admin-xlsx.js  (২০২৬-১২-১৮, নতুন SQL নেই) এক্সেলের ওপরে বড় লোগো+সাইটের নামের ব্যানার-ছবি, ঘরে ইমোজি নয়, হেডার ইংরেজি+বাংলা | sw.js mc-challenge-159
+  social-draw.js, admin-social.js  (২০২৬-১২-১৮, নতুন SQL নেই) সনদ ২৪ ডিজাইন A4 আড়াআড়ি, ৫০ সনদ-নাম + ৫০ সোশ্যাল-শিরোনাম, অনেক জনের ঘোষণা | sw.js mc-challenge-161
+  social-draw.js, admin-social.js, admin-dlhub.js (নতুন), admin.html  (২০২৬-১২-১৮, নতুন SQL নেই) ২০ আধুনিক স্টাইল + "⬇ ডাউনলোড" ট্যাব (এক্সেল/ZIP/JPG/PNG/PDF) | sw.js mc-challenge-162
+
+২০২৬-১২-২০ (ফেসবুক অনুমতি)
+  fbok.js  কুইজের পর ফল-পাতায় কার্ড দেখানোর ২ সেকেন্ড পর (বা যেকোনো বাটনে চাপলে) "ফেসবুক পেইজে কার্ড ছাড়ার অনুমতি" পপআপ: হ্যাঁ (ছবি সহ / ছবি ছাড়া) বা না; উত্তরের পর চাপা বাটনের কাজ চলে; উত্তর ফোনে + সার্ভারে (প্রতি ফোনে একটা), জমা-ফর্মেও একই লাইন  (না থাকলে পপআপ আসে না, বাকি চলে; সার্ভারে supabase-new-20261220.sql লাগে)
+  supabase-new-20261220.sql  টেবিল mc2_fbok + mc2_fb_get/mc2_fb_set + অ্যাডমিন-ভিউ mc2_cards_fbv (✅ চালানো)
+  (বদলানো ফাইল: app.js-এ ২টি ছোট হুক (mcFbShown); contest.js-এ ফর্মে লাইন; index.html-এ fbok.js; style.css; status.html; sw.js mc-challenge-177; admin-cards.js-এ ফিল্টার/চিহ্ন + "ছবি ছাড়া" অনুমতির কার্ড ছবি ছাড়াই আঁকা; admin-export.js-এ ZIP ফিল্টার + এক্সেল কলাম)
+
+২০২৬-১২-২০ (ছবি সহ/ছাড়া অপশন, সার্টিফিকেট সই, বিজয়ীদের এক-পেজ শিট; নতুন SQL নেই; sw.js mc-challenge-178)
+  admin-sheet.js  📄 বিজয়ীদের "একসাথে এক পেজ": ১/৫/৭/১০… জন বেছে, উপরে সাইটের নাম-লোগো-শিরোনাম-তারিখ সহ একটাই ছবি (JPG + হাই-রেজ PNG); রং/কলাম বাছা যায়; বাটন: লটারির চাকার ফলে, 🎰 লটারি ফলে, 🏆 বিজয়ী ঘোষণার তালিকায়  (না থাকলে বাটন বলে "লোড হয়নি", বাকি চলে)
+  (বদলানো ফাইল: admin-cards.js, admin-export.js — ছবি সহ / 🙈 ছবি ছাড়া / 📣 অনুমতি অনুযায়ী বাছাই (প্রিভিউ, ডাউনলোড, ZIP); social-draw.js, admin-social.js — সার্টিফিকেটের সই; admin.html — স্ক্রিপ্ট ও Google Fonts "Mr De Haviland"/"Great Vibes"; admin-prize.js, admin-lottery.js, admin-winners.js — শিট বাটন)
+
+২০২৬-১২-২০ (৩) sw.js mc-challenge-179, নতুন SQL নেই
+  admin-fbc.js  (+ 🚦 MCFB.gate: অনুমতি-নেই যাদের নিয়ে নাম-বাছার পপআপ) অ্যাডমিনের সব তালিকায় নামের পাশে 📣 অনুমতির চিহ্ন (MCG.tag-এর মাধ্যমে: ইউজার-তালিকা ও ইউজার-তথ্য, লটারি ফল, চাকার ফল, বিজয়ী তালিকা ও বাছাই-তালিকা, পোস্টার-জানালা, শিট-জানালা, কার্ড-তালিকা/পপআপ); mc2_fbok একবার এনে ৫ মিনিট মনে রাখে
+  admin-sheet.js  এখন সব ধরনের কার্ড (বিজয়ী-টাইল, 🪪 কার্ড ১/২/৩/স্টোরি, 🖼 পোস্টার, 🎓 সার্টিফিকেট, 📣 সোশ্যাল কার্ড) ১-৪টা এক সারিতে, উপরে সবসময় হেডার (বাম-ডানে লোগো, সাইটের নাম, স্লোগান, শিরোনাম, তারিখ)
+  (বদলানো: admin-social.js MCSOC + 📄 বাটন; admin-cards.js 📄 বাটন; admin-users.js MCG.tag-এ চিহ্ন; admin-lottery/prize/winners.js; admin.html)
+
+২০২৬-১২-২০ (৪) sw.js mc-challenge-180, নতুন SQL নেই
+  index.html — নিচের ট্যাবে "🏅 বিজয়ী" (চ্যাটের ডানে, #tbWin, শুরুতে লুকানো); style.css — ৬ ট্যাবের মাপ; winners.js — বিজয়ী থাকলে ট্যাব দেখায় (tabOn); ক্লিকে href="#winners" = হোমের বিজয়ী-তালিকার একই পপআপ
+  social-draw.js/admin-social.js — সনদের ডান সই ডিফল্ট "Granted by MC Explorer" (ছোট+বড় হাতের সই), নিচে "MC Explorer"
+
+২০২৬-১২-২০ (৫) sw.js mc-challenge-182 — ডোমেইন অটোই থাকল (config.js siteUrl ফাঁকা); admin-sheet.js-এ নাম-খোঁজা বাক্স, টিক-করার ক্রমে কার্ড, "পেজে এই ক্রমে আসবে" লাইন; ১০ জনের বেশি হলে শুরুতে কেউ বাছা থাকে না
+
+২০২৬-১২-২০ (৬) sw.js mc-challenge-183, নতুন SQL নেই
+  admin-zoom.js  প্রিভিউ-জানালার ছবিতে দুই আঙুলে পিঞ্চ-জুম (১×–৬×), জুমে এক আঙুলে টেনে ঘোরানো, ডাবল-ট্যাপে বড়/ছোট, "⟲ ১×" বাটন, কম্পিউটারে Ctrl+স্ক্রল; নিজে বসে: শিট #shI, কার্ড #cxP, পোস্টার #pi, সোশ্যাল #scImg, আর data-zoom ছবিতে (admin.html-এ লোড)
+
+২০২৬-১২-২০ (৭) sw.js mc-challenge-185, নতুন SQL নেই
+  admin-dlhub.js — ⬇ ডাউনলোড ট্যাবের ওপরে "🗂 কার্ডের ধরন (ফোল্ডার)": 🪪 ফলাফল · 🏆 বিজয়ী · 🖼 পোস্টার · 🎓 সার্টিফিকেট · 📣 সোশ্যাল · 📋 টাইল · 📜 হিস্টরি। ধরনে চাপলে সব নাম (ডাটাবেজ/ইউজার-ফোল্ডার/বিজয়ী-ঘোষণা থেকে; নাম-খোঁজা, বিভাগ, সাজানো, 📣 অনুমতি ফিল্টার, আরও দেখুন), টিক বা ৫/৭/১০ বাটন, "📄 এক পেজে বানান" → admin-sheet.js জানালা (pre:"all")
+  admin-sheet.js — এক সারিতে ৫টা পর্যন্ত (পেজ ২৭০০ চওড়া); o.pre="all" = পাঠানো সবাই বাছা
+
+২০২৬-১২-২০ (৮) sw.js mc-challenge-186, নতুন SQL নেই
+  admin-sheet.js — (ক) কার্ড মুভ: "পেজে এই ক্রমে আসবে" নামের চিপে চেপে ⏫ প্রথমে / ⬆ আগে / ⬇ পরে / ⏬ শেষে / ✕ বাদ; আঁকা কার্ড মনে রাখে তাই সরালে আবার আঁকে না (খ) সনদ ও সোশ্যাল কার্ডের ডিজাইন + লেখা জানালা থেকেই বদলানো (শুধু ওই ছবিতে; 📣 সোশ্যাল ট্যাবের সেটিং বদলায় না)
+  admin-social.js — MCSOC.defaults(kind) ও MCSOC.make(kind, person, ov)
+
+২০২৬-১২-২০ (৯) sw.js mc-challenge-187, নতুন SQL নেই
+  admin-sheet.js — কার্ডে ট্যাপ (বা নামের চিপে চাপ) → ✏️ এডিট-প্যানেল: নাম, বিভাগ, সেশন, মার্ক, র‍্যাংক বদলানো (শুধু ওই ছবিতে; আসল ডাটা/সার্ভার বদলায় না), "↺ আসলে ফিরুন", "👤 মূল ডাটা খুলুন" (ইউজারের তথ্য-জানালা MCA_USER, শিটের ওপরে খোলে)
+
+২০২৬-১২-২০ (১০) sw.js mc-challenge-188, নতুন SQL নেই
+  admin-sheet.js — এডিট-প্যানেলে আরও ঘর: 🪪 কার্ডে শতকরা %, মোট প্রশ্ন, খেতাব, ক্লাব, সেরা জায়গা; 🖼 পোস্টারে "মোট"; প্রতিজনের ছবি: ডিফল্ট / ছবি সহ / ছবি ছাড়া / 📷 নতুন ছবি বসান (৯০০px-এ ছোট করে, শুধু ডাউনলোডের জন্য)
+  admin-cards.js — drawFull(c, kind, ex, lov, ph): ph="with"|"none" প্রতিজনের ছবি-বাছাই
+
+২০২৬-১২-২০ (১১) sw.js mc-challenge-189, নতুন SQL নেই
+  admin-sheet.js — এডিট ফোনে (localStorage) থাকে, সার্ভারে যায় না: প্রতিজনের বদল (mc2_sheet_po; চাবি = ডিভাইস, না থাকলে ছোট-হাতের নাম) ও সনদ/সোশ্যালের লেখা-ডিজাইন বদল (mc2_sheet_ov); জানালা আবার খুললে/পেজ রিলোডে নিজে ফেরে; ↺ আসলে ফিরুন / ↺ সোশ্যাল ট্যাবের সেটিংয়ে ফিরুন / 🗑 সব সেভ-করা এডিট মুছুন
+
+২০২৬-১২-২০ (১২) sw.js mc-challenge-190, নতুন SQL নেই — প্রথম দফা (১ + ৩)
+  admin-sheet.js — কাস্টম সংখ্যা ঘর ("প্রথম N", Enter-ও চলে, সর্বোচ্চ ২৪); নতুন ধরন 🏅 র‍্যাংক কার্ড; সোশ্যাল/র‍্যাংক কার্ডে ছবি (সহ/ছাড়া/নতুন ছবি, প্রতিজনের বাছাই); open(.., {design:"story"}) সমর্থন
+  admin-social.js — MCSOC.make(kind, person, ov, photo): kind = cert | social | rank
+  admin-cards.js — 🪪 কার্ড-প্রিভিউ পপআপে "🛠 বানান ও ডাউনলোড" সারি: 🪪 কার্ড · 📱 স্টোরি · 🖼 বিজয়ী পোস্টার · 🎓 সার্টিফিকেট · 📣 সোশ্যাল · 🏅 র‍্যাংক · 📋 টাইল — চাপলে ওই একজনের জন্য শিট-জানালা
+  admin-dlhub.js — ⬇ ডাউনলোডে নতুন ফোল্ডার 🏅 র‍্যাংক কার্ড, 📱 স্টোরি কার্ড; কাস্টম সংখ্যা ঘর; গ্রুপ-কার্ডের (পডিয়াম/বোর্ড/স্ট্যাটস/মেসেজ/লাকি ড্র) জন্য 📣 সোশ্যাল ট্যাবের শর্টকাট
+
+২০২৬-১২-২০ (১৩) sw.js mc-challenge-191, নতুন SQL নেই — একক কার্ড ডাউনলোড
+  admin-sheet.js — "ডাউনলোড কেমন হবে": 📄 গ্রুপ পেজ (একটাই ছবি, হেডার-লোগোসহ; হেডার অন/অফ টিক আগের মতোই; একজন বাছলেও হেডার থাকে) | 🖼 একা কার্ড (প্রতিজনের আলাদা ফুল-সাইজ ছবি, প্রতিটার নিজের JPG/PNG ডাউনলোড, ট্যাপে ✏️ এডিট, পিঞ্চ-জুম)। o.mode = "page" | "single"
+  admin-dlhub.js — প্রতিটি কার্ড-ফোল্ডারে দুই বাটন: 📄 গ্রুপ পেজ বানান / 🖼 একা কার্ড (আলাদা আলাদা)
+  admin-cards.js — 🪪 কার্ড-পপআপের 🛠 বাটনগুলো এখন একা-কার্ড মোডে খোলে (জানালায় মোড বদলে গ্রুপ পেজ করা যায়)
+
+২০২৬-১২-২০ (১৪) sw.js mc-challenge-192, নতুন SQL নেই — বাকি সব (২, ৪+৫, ১০, ৬)
+  admin-sheet.js — নামের চিপে ✕ ও "➕ নাম যোগ" (নাম লিখে কার্ডওয়ালা খুঁজে যোগ); ধরন 🏆 পডিয়াম / 📊 বোর্ড / 🎁 ঘোষণা-তালিকা (বাছা সবাই মিলে একটাই কার্ড, ক্রম মুভে বদলায়, র‍্যাংক = অবস্থান); "প্রতি পেজে কয়জন" (পেজ ভাগ + প্রতি পেজের JPG/PNG + সব একসাথে ZIP); একা মোডেও ZIP; সর্বোচ্চ ৪৮ জন
+  admin-social.js — MCSOC.makeGroup(kind, persons, ov, photos); সোশ্যাল ট্যাবের নিচে "👥 সব ইউজার" বাক্স
+  admin-dlhub.js — 📅 তারিখ-সার্চ (আজ/গতকাল/পরশু/শেষ ৩-৫-১০ দিন/১-২-৩-৫ সপ্তাহ/কাস্টম) কার্ড-তালিকা ও বিজয়ী-ঘোষণায়; MCDL.mount/boxHtml (অন্য ট্যাবে তালিকা বসানো)
+  admin-winners.js — ঘোষণা-তালিকার নিচে "👥 বিজয়ী-তালিকা থেকে বেছে কার্ড বানান" বাক্স
+  admin-users.js — "📄 বাছাইগুলোর কার্ড (এক পেজে)"; admin-results.js — "📄 বাছাইগুলোর কার্ড (এক পেজে)"
+
+২০২৬-১২-২১ sw.js mc-challenge-204 — ⬇ ডাউনলোড ট্যাবে লাল "✏️ এডিট" বাটন (নতুন SQL নেই; ফোনে mc2_dl_edit):
+  admin-dledit.js (নতুন) — window.MCDLE: ফোনের স্টোর (প্রতিজনের বদল p / ডিজাইন-রং t + who), applyCard, designFor
+  admin-dlhub.js — ফোল্ডার ও ধরন বাছলে "✏️ এডিট" বাটন (✅ টিক-করা নাম নিয়ে); MCEXP.folder-এ id পাঠানো
+  admin-sheet.js — o.dl মোড: নামের ড্রপডাউন, ১২৩ + পরের, 💾 সেভ / সেভ ও বন্ধ / ✕ confirm; mc2_sheet_po/ov/cfg অক্ষত
+  admin-export.js — ফোল্ডার JPG/ZIP আঁকার সময় mc2_dl_edit প্রয়োগ

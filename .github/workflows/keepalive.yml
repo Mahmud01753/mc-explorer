@@ -1,0 +1,22 @@
+name: Supabase keep-alive
+on:
+  schedule:
+    - cron: "17 3,15 * * *"   # রোজ ২ বার (UTC ০৩:১৭ ও ১৫:১৭)
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping Supabase (mc2_settings থেকে ১টা সারি পড়া)
+        run: |
+          URL=$(grep -oE 'url: *"[^"]+"' config.js | head -1 | sed -E 's/url: *"([^"]+)"/\1/')
+          KEY=$(grep -oE 'key: *"[^"]+"' config.js | head -1 | sed -E 's/key: *"([^"]+)"/\1/')
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then echo "config.js-এ url/key নেই"; exit 1; fi
+          for i in 1 2 3; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL/rest/v1/mc2_settings?select=*&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+            echo "চেষ্টা $i → HTTP $CODE"
+            if [ "$CODE" = "200" ]; then exit 0; fi
+            sleep 20
+          done
+          exit 1

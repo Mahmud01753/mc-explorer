@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Mr+De+Haviland&family=Great+Vibes&display=swap">
+<title>MC Explorer অ্যাডমিন</title>
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png"><link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<style>@font-face{font-family:"MCDigits";font-weight:100 500;src:local("Noto Sans Bengali"),local("NotoSansBengali-Regular"),local("NotoSansBengali"),local("Nirmala UI"),local("Bangla Sangam MN"),local("Kalpurush");unicode-range:U+09E6-09EF}@font-face{font-family:"MCDigits";font-weight:600 900;src:local("Noto Sans Bengali Bold"),local("NotoSansBengali-Bold"),local("Nirmala UI Bold"),local("Bangla Sangam MN Bold"),local("Noto Sans Bengali"),local("NotoSansBengali"),local("Nirmala UI"),local("Bangla Sangam MN"),local("Kalpurush");unicode-range:U+09E6-09EF}
+:root{--bg:#f4f7f2;--fg:#10261b;--card:#fff;--g:#1d6b43;--mut:#5a6b61;--bd:#d5e0d8;--red:#b3261e;--o:#d98200}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a14;--fg:#e8f1ea;--card:#17261d;--g:#4cc183;--mut:#98ad9f;--bd:#2a3f32;--red:#ff8a80;--o:#f0a830;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 "MCDigits","Hind Siliguri","Noto Sans Bengali","Nirmala UI","Bangla Sangam MN","Kalpurush","Siyam Rupali",system-ui,sans-serif;padding:12px max(12px,env(safe-area-inset-left))}
+main{max-width:980px;margin:0 auto;display:grid;gap:12px}h1{font-size:20px;margin:4px 0}h2{font-size:17px;margin:0 0 8px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;min-width:0}
+input,select,textarea{width:100%;font:inherit;padding:9px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--fg)}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 12px;background:var(--g);color:#fff;cursor:pointer}button.l{background:none;color:var(--fg);border:1px solid var(--bd)}button.d{background:var(--red);color:#fff}button.s{padding:5px 9px;font-size:13px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}.tabs button{background:var(--card);color:var(--fg);border:1px solid var(--bd)}.tabs button.on{background:var(--g);color:#fff}
+.row{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end}.sm{font-size:13px;color:var(--mut)}
+.it{border-top:1px solid var(--bd);padding:10px 0;display:grid;gap:4px;overflow-wrap:anywhere}.it:first-child{border-top:0}.act{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;background:var(--bd);border-radius:999px;padding:1px 8px;margin-right:4px}.warn{color:var(--red)}.hid{opacity:.55}
+img.th{max-width:120px;max-height:90px;border-radius:8px;border:1px solid var(--bd)}.win{background:rgba(217,130,0,.15);border:2px solid var(--o)}
+</style><style>
+/* অ্যাডমিনেও সবুজ পট + একই হেডার (শুধু চেহারা) */
+body{background:#0f7350}main>h1{color:#fff}main>.sm,#app>.sm{color:#d7efe2}
+.shd{display:flex;align-items:center;gap:12px;max-width:980px;margin:0 auto;padding:4px 0 8px;color:#fff;text-decoration:none;min-width:0}
+.shd img{flex:none;width:56px;height:56px;border-radius:16px;box-shadow:0 0 0 2px #ffd23f,0 4px 0 #0b5c40;background:#0b5c40}
+.shd b{font:700 22px/1.2 "Anek Bangla","Hind Siliguri",sans-serif;white-space:nowrap}
+.shd .dom{background:#ffd23f;color:#12271d;font:600 11px/1.6 "Hind Siliguri",sans-serif;padding:0 8px;border-radius:999px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.shd .dom:empty{display:none}
+</style></head><body class="adm"><a class="shd" id="shd" href="./admin.html" aria-label="MC Explorer"><img src="images/logo-explorer.png" width="56" height="56" alt=""><b>MC Explorer</b><span class="dom" id="shdom"></span></a>
+<script>try{var _c=window.MC_CFG||{},_d=(_c.siteUrl||location.host||"").replace(/^https?:\/\//,"").replace(/\/.*$/,"");document.getElementById("shdom").textContent=_d}catch(e){}</script>
+<main>
+<h1>🛠️ MC Explorer অ্যাডমিন</h1>
+<div id="login" class="c"><h2>লগইন</h2><div class="row"><label>ইমেইল<input id="em" type="email" autocomplete="username"></label><label>পাসওয়ার্ড<input id="pw" type="password" autocomplete="current-password"></label><button id="go" type="button">ঢুকুন</button></div><p class="sm" id="lm">Supabase-এ যে অ্যাডমিন ইউজার বানিয়েছেন তার ইমেইল ও পাসওয়ার্ড দিন।</p></div>
+<div id="app" hidden>
+  <div class="tabs" id="tabs"></div>
+  <div class="c" id="view" style="margin-top:10px"></div>
+  <p class="sm"><button class="l s" id="out" type="button">লগআউট</button></p>
+</div>
+</main>
+<script src="config.js"></script><script src="data.js"></script><script src="qr.js"></script><script src="card.js"></script><script src="logo-config.js"></script><script src="qimg-config.js"></script><script src="cards.js"></script><script src="admin-gallery.js"></script><script src="admin-anonchat.js"></script><script src="admin-fbc.js"></script><script src="admin-users.js"></script><script src="admin-moderation.js"></script><script src="admin-xlsx.js"></script><script src="admin-xdlg.js"></script><script src="admin-results.js"></script><script src="admin-xtab.js"></script>
+<script src="admin-board.js"></script><script src="admin-cards.js"></script><script src="admin-export.js"></script><script src="admin-zoom.js"></script><script src="admin-dledit.js"></script><script src="admin-sheet.js"></script><script src="admin-badges.js"></script><script src="admin-folders.js"></script><script src="poster-draw.js"></script><script src="social-draw.js"></script><script src="admin-prize.js"></script><script src="admin-winners.js"></script><script src="admin-wcard.js"></script>
+<script src="admin-lottery.js"></script><script src="admin-pnote.js"></script><script src="admin-cleanup.js"></script>
+<script src="admin-bin.js"></script><script src="admin-home.js"></script><script src="admin-logos.js"></script><script src="admin-hub.js"></script><script src="admin-survey.js"></script><script src="admin-social.js"></script><script src="admin-dlhub.js"></script><script src="admin-qimg.js"></script><script src="admin-diff.js"></script><script src="admin-ux.js"></script><script src="admin-keep.js"></script><script src="admin-stepper.js"></script>
+<script src="admin.js"></script>
+<script src="scroll-btn.js"></script><script src="float-search.js"></script></body></html>

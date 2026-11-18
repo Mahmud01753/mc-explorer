@@ -1,0 +1,20 @@
+# ফেসবুক/মেসেঞ্জার/হোয়াটসঅ্যাপ ইত্যাদির লিঙ্ক-প্রিভিউ ক্রলারকে স্পষ্ট অনুমতি; শুধু অ্যাডমিন বাদ
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: *
+Disallow: /admin
+Disallow: /admin.html
+Allow: /
