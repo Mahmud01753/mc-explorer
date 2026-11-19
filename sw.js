@@ -1,4 +1,4 @@
-const K = "mc-challenge-230";
+const K = "mc-challenge-231";
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== K).map((k) => caches.delete(k)))).then(() => clients.claim())));
 const put = (req, r) => { if (r && r.ok && !r.redirected) { const c = r.clone(); caches.open(K).then((x) => x.put(req, c)); } return r; };

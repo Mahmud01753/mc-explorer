@@ -33,7 +33,7 @@
     ".unmo{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:100;padding:12px}.unb{background:var(--card);color:var(--fg);border-radius:14px;padding:14px;width:min(520px,100%);max-height:92vh;overflow:auto;display:grid;gap:8px}" +
     ".unb dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0;font-size:14px}.unb dt{color:var(--mut);font-weight:600}.unb dd{margin:0;overflow-wrap:anywhere}.unb h3{margin:6px 0 0;font-size:15px}" +
     "#unT{position:fixed;top:10px;right:10px;display:grid;gap:6px;z-index:101;max-width:min(320px,calc(100vw - 20px))}#unT div{background:#10261b;color:#fff;border-radius:10px;padding:8px 12px;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.3)}#unT div.l{background:#4a4f4c}" +
-    ".onb h2 small{font-size:13px;color:var(--mut);font-weight:500;margin-left:6px}.onf{font-size:13px;display:grid;gap:2px;margin-top:6px}";
+    ".onb h2 small{font-size:13px;color:var(--mut);font-weight:500;margin-left:6px}.onf{font-size:13px;display:grid;gap:2px;margin-top:6px}.memWrap{border:1px solid #e0e6dc;border-radius:10px;padding:8px 10px;margin:6px 0}.memHead{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}.memBar{display:flex;height:16px;border-radius:8px;overflow:hidden;background:#e5e7eb;margin:6px 0;position:relative}.memBar span{display:block;height:100%}.memPulse{position:absolute;inset:0;background:linear-gradient(90deg,#e5e7eb,#cbd5e1,#e5e7eb);animation:memP 1.2s linear infinite;background-size:200% 100%}@keyframes memP{from{background-position:200% 0}to{background-position:-200% 0}}.memLegend{display:grid;gap:4px;font-size:13px}.memRow{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.memDot{width:10px;height:10px;border-radius:3px;display:inline-block}";
   document.head.appendChild(st);
   function toastBox() { var t = document.getElementById("unT"); if (!t) { t = document.createElement("div"); t.id = "unT"; document.body.appendChild(t); } return t; }
   function notify(kind, r) { var d = document.createElement("div"); d.className = kind === "leave" ? "l" : ""; d.textContent = (kind === "leave" ? "⚪ চলে গেছে: " : "🟢 জয়েন করেছে: ") + r.n + (r.d ? " (" + r.d + ")" : ""); toastBox().appendChild(d); setTimeout(function () { d.remove(); }, 7000); }
@@ -207,8 +207,8 @@
         return '<div class="it"><div><input type="checkbox" class="unCk" data-ck="' + esc(x.voter) + '"' + (SEL[x.voter] || ALLF ? " checked" : "") + ' style="width:18px;height:18px;margin:0 6px 0 0;vertical-align:middle"><span class="udot' + (x.online ? " on" : "") + '"></span><button class="lk" type="button" data-uu="' + esc(x.voter) + '">' + esc(nm(x)) + '</button>' + gtag(x.voter, nm(x), x.gender) + ' <span class="tag">' + esc(x.gdept || x.cdept || "—") + '</span><span class="tag">' + esc(x.gbatch || x.csess || "—") + '</span>' + (x.best != null ? '<span class="tag">স্কোর ' + bd(x.best) + "</span>" : "") + '</div><div class="sm">' + esc(x.uid) + " · " + (x.online ? "🟢 অনলাইন" : "Last Active: " + ago(x.ls)) + " · আইপি " + esc(x.ip || "—") + " · " + esc(loc(x)) + " · " + esc(ua(x.ua, x.info)) + (x.phone ? " · 📞 " + esc(x.phone) : "") + (x.info && x.info.sw ? " · " + esc(x.info.sw) : "") + "</div>" + flagBox(x) + "</div>";
       };
       ST.pg = pg || 0; TOTAL = d.total || 0; PAGEV = d.rows.map(function (r) { return r.voter; }); PAGER = {}; d.rows.forEach(function (r) { PAGER[r.voter] = r; });
-      V.innerHTML = "<h2>👤 User Info — Visitor List (" + bd(d.total) + ')</h2><div class="row"><label>খুঁজুন (নাম, বিভাগ, সেশন, আইপি, জেলা/শহর, আইডি)<input id="unQ" value="' + esc(ST.q) + '"></label><label>দেখান<select id="unF"><option value="0"' + (ST.st === "0" ? " selected" : "") + '>সব ভিজিটর</option><option value="1"' + (ST.st === "1" ? " selected" : "") + '>শুধু অনলাইন</option>' + (d.depts ? '<option value="2"' + (ST.st === "2" ? " selected" : "") + '>শুধু অফলাইন</option>' : "") + '</select></label><button id="unS" type="button">🔎 খুঁজুন</button><button class="l" id="unR" type="button">✖ ফিল্টার মুছুন</button></div>' + filt2(d) + '<div id="unDelBox"></div><p class="sm">নামে ক্লিক করলে পুরো তথ্য খুলবে। এই তালিকা সাইটে Supabase চালু করার পর যারা ঢুকেছে তাদের নিয়ে।</p><div id="unL">' + (d.rows.map(item).join("") || '<p class="sm">কোনো ভিজিটর পাওয়া যায়নি।</p>') + '</div><div id="unPg">' + (window.MCPG ? window.MCPG.html(ST.pg, d.total, 50, "data-up") : "") + "</div>";
-      document.getElementById("unDelBox").innerHTML = delBar(); delWire();
+      V.innerHTML = "<h2>👤 User Info — Visitor List (" + bd(d.total) + ')</h2><div id="unSumBox"></div><div class="row"><label>খুঁজুন (নাম, বিভাগ, সেশন, আইপি, জেলা/শহর, আইডি)<input id="unQ" value="' + esc(ST.q) + '"></label><label>দেখান<select id="unF"><option value="0"' + (ST.st === "0" ? " selected" : "") + '>সব ভিজিটর</option><option value="1"' + (ST.st === "1" ? " selected" : "") + '>শুধু অনলাইন</option>' + (d.depts ? '<option value="2"' + (ST.st === "2" ? " selected" : "") + '>শুধু অফলাইন</option>' : "") + '</select></label><button id="unS" type="button">🔎 খুঁজুন</button><button class="l" id="unR" type="button">✖ ফিল্টার মুছুন</button></div>' + filt2(d) + '<div id="unDelBox"></div><div id="unAcBox"></div><p class="sm">নামে ক্লিক করলে পুরো তথ্য খুলবে। এই তালিকা সাইটে Supabase চালু করার পর যারা ঢুকেছে তাদের নিয়ে।</p><div id="unL">' + (d.rows.map(item).join("") || '<p class="sm">কোনো ভিজিটর পাওয়া যায়নি।</p>') + '</div><div id="unPg">' + (window.MCPG ? window.MCPG.html(ST.pg, d.total, 50, "data-up") : "") + "</div>";
+      document.getElementById("unDelBox").innerHTML = delBar(); delWire(); acWire();
       var dt = document.getElementById("unDet"); if (dt) dt.addEventListener("toggle", function () { ST.open = dt.open ? "1" : "0"; saveST(); });
       if (!document.getElementById("unFloat")) { var fb = document.createElement("button"); fb.id = "unFloat"; fb.type = "button"; fb.textContent = "🔎 খোঁজো";
         fb.style.cssText = "position:fixed;right:14px;bottom:18px;z-index:50;border:0;border-radius:24px;padding:12px 16px;background:#1a56db;color:#fff;font-size:15px;box-shadow:0 4px 12px #0004;cursor:pointer";
@@ -265,6 +265,92 @@
   var GM = null, GT = 0, GW = false;
   function gload() { if (GW) return; GW = true; M().rpc("mc2_admin_genders").then(function (r) { if (r && r.d) { GM = r; GT = Date.now(); } GW = false; }).catch(function () { GW = false; }); }
   setInterval(function () { if (!GM || Date.now() - GT > 300000) gload(); }, 4000); setTimeout(gload, 2000);
+
+  // ---------- 📊 সামারি + 🧹 অটো-ক্লিন: ইউজার ইনফো (ইউজার তালিকা) ও ইউজার লগ (ভিজিট-লগ) — আলাদা অন/অফ ও আলাদা সংখ্যা (SQL: supabase-new-20261226.sql) ----------
+  var AC = null, SM = null, ACE = "", ACM = { p: "", v: "" }, ACBAD = { p: false, v: false }, ACO = false, ACL = false;
+  var PT = {
+    p: { t: "👤 ইউজার ইনফো (ইউজার তালিকা)", rpc: "mc2_presence_clean_set", part: "presence", f: [["max", "সর্বোচ্চ কত জন থাকবে (বাড়তি পুরোনোরা কাটবে)", 1000000], ["ip", "একই আইপি-র সর্বোচ্চ কত সারি (বেশি হলে কাটবে)", 1000000], ["keep", "শেষ আসার কত ঘণ্টা পর্যন্ত কাটবে না", 720], ["days", "কত দিন না এলে কাটবে (দিন)", 3650]], note: "কার্ড আছে এমন ইউজার আর এখন অনলাইনে থাকা ইউজার কখনো কাটা হয় না।" },
+    v: { t: "📜 ইউজার লগ (ভিজিট-লগ)", rpc: "mc2_visits_clean_set", part: "visits", f: [["max", "সর্বোচ্চ কত সারি থাকবে (পুরোনো কাটবে)", 1000000], ["ip", "একই আইপি-র সর্বোচ্চ কত সারি (বেশি হলে কাটবে)", 1000000], ["keep", "কত ঘণ্টার ভেতরের সারি কাটবে না", 720], ["days", "কত দিনের পুরোনো হলে কাটবে (দিন)", 3650]], note: "এই লগে প্রতি ভিজিটে নতুন সারি জমে।" }
+  };
+  function acErr(e) { var m = String((e && e.message) || e || ""); return /function|does not exist|schema cache|not found|404|PGRST/i.test(m) ? "⏳ নতুন SQL (supabase-new-20261226.sql) এখনো চালানো হয়নি — Supabase > SQL Editor-এ চালালে এই সামারি ও অটো-ক্লিন বক্স কাজ করবে। সাইট আগের মতোই চলছে।" : "❌ " + m; }
+  function acSay(k, t, bad) { ACM[k] = t; ACBAD[k] = !!bad; var m = document.getElementById("unAcM" + k); if (m) { m.textContent = t; m.className = "sm" + (bad ? " warn" : ""); } }
+  function tile(l, v) { return '<div style="border:1px solid #e0e6dc;border-radius:8px;padding:6px 8px"><div class="sm" style="opacity:.8">' + l + "</div><b>" + v + "</b></div>"; }
+  function dtx(x) { if (!x) return "—"; var d = new Date(x); return isNaN(d) ? "—" : ago(d.getTime()); }
+  // ---------- 💾 স্টোরেজ বার: ইউজার ইনফো / ইউজার লগ / বাকি ডাটাবেস / খালি জায়গা (শতাংশ সহ) ----------
+  function memSkel() { return '<div class="memBar" aria-label="লোড হচ্ছে"><div class="memPulse"></div></div>'; }
+  function memBar() {
+    var lim = Number(SM.db_lim) > 0 ? Number(SM.db_lim) : 500;
+    var p = Number(SM.p_mb) || 0, v = Number(SM.v_mb) || 0, db = Number(SM.db_mb) || 0;
+    var oth = Math.max(0, db - p - v);
+    function pc(x) { return Math.min(100, Math.round(x / lim * 1000) / 10); }
+    var used = pc(db), free = Math.max(0, Math.round((100 - used) * 10) / 10);
+    var segs = [["👤 ইউজার ইনফো", p, "#2563eb"], ["📜 ইউজার লগ", v, "#f59e0b"], ["🗃 বাকি ডাটাবেস", oth, "#94a3b8"]];
+    var bar = '<div class="memBar" role="img" aria-label="ডাটাবেস ' + used + '% ভরা">' +
+      segs.map(function (s) { return '<span title="' + s[0] + '" style="width:' + pc(s[1]) + '%;background:' + s[2] + '"></span>'; }).join("") +
+      '</div>';
+    var leg = segs.map(function (s) {
+      return '<div class="memRow"><span class="memDot" style="background:' + s[2] + '"></span><span>' + s[0] + '</span><b>' + bd(s[1]) + ' MB</b><span class="sm">' + bd(pc(s[1])) + '% (সীমার)</span></div>';
+    }).join("");
+    return '<div class="memWrap"><div class="memHead"><b>💾 ডাটাবেস স্টোরেজ</b><span class="sm">মোট ' + bd(db) + ' MB / সীমা ' + bd(lim) + ' MB</span></div>' +
+      bar +
+      '<div class="memLegend">' + leg + '<div class="memRow"><span class="memDot" style="background:#e5e7eb;border:1px solid #9ca3af"></span><span>খালি জায়গা</span><b>' + bd(free) + '% পড়ে আছে</b><span class="sm">ভরা ' + bd(used) + '%</span></div></div>' +
+      '<p class="sm" style="margin:4px 0 0">সার্ভারের হিসাব; কার্ড ট্যাবের আলাদা হিসাব আছে।</p></div>';
+  }
+  function sumHtml() {
+    var h = '<div style="border:1px solid #cfd8c8;border-radius:10px;padding:10px;margin:8px 0"><b>📊 ফুল সামারি</b> <button class="s" id="unSumR" type="button">🔄 রিফ্রেশ</button>';
+    if (ACE) return h + '<p class="sm warn">' + esc(ACE) + "</p></div>";
+    if (!SM) return h + memSkel() + '<p class="sm">⏳ জায়গার হিসাব লোড হচ্ছে…</p></div>';
+    h += memBar();
+    var g = 'style="display:grid;gap:6px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin:6px 0"';
+    h += '<p class="sm" style="margin:6px 0 2px"><b>👤 ইউজার ইনফো (ইউজার তালিকা)</b> — ডাটাবেসে জায়গা: <b>' + bd(SM.p_mb) + " MB</b></p><div " + g + ">" +
+      tile("মোট ইউজার", bd(SM.p_total)) + tile("🟢 এখন অনলাইন", bd(SM.p_online)) + tile("গত ১ ঘণ্টায় এসেছে", bd(SM.p_h1)) + tile("গত ২৪ ঘণ্টায় এসেছে", bd(SM.p_h24)) + tile("🪪 কার্ডওয়ালা (সুরক্ষিত)", bd(SM.p_cards)) + tile("কার্ডছাড়া", bd(Math.max(0, SM.p_total - SM.p_cards))) +
+      tile("আলাদা আইপি", bd(SM.p_ips)) + tile("আইপি নেই", bd(SM.p_noip)) + tile("সীমার বেশি আইপি", bd(SM.p_bigip)) + tile("সবচেয়ে পুরোনো", esc(dtx(SM.p_old))) + "</div>" +
+      '<p class="sm" style="margin:6px 0 2px"><b>📜 ইউজার লগ (ভিজিট-লগ)</b> — ডাটাবেসে জায়গা: <b>' + bd(SM.v_mb) + " MB</b></p><div " + g + ">" +
+      tile("মোট সারি", bd(SM.v_total)) + tile("গত ২৪ ঘণ্টায় নতুন", bd(SM.v_h24)) + tile("আলাদা আইপি", bd(SM.v_ips)) + tile("আলাদা ডিভাইস", bd(SM.v_devs)) + tile("সীমার বেশি আইপি", bd(SM.v_bigip)) + tile("বাড়তি সারি (সীমার ওপরে)", bd(SM.v_over)) + tile("সবচেয়ে পুরোনো", esc(dtx(SM.v_old))) + "</div>" +
+      '<p class="sm" style="margin:6px 0">পুরো ডাটাবেস এখন: <b>' + bd(SM.db_mb) + " MB</b></p>";
+    if (SM.top && SM.top.length) h += '<p class="sm" style="margin:6px 0 2px"><b>🌐 সবচেয়ে বেশি সারির আইপি</b></p><div style="overflow-x:auto"><table class="sm" style="border-collapse:collapse;min-width:260px"><tr><th style="text-align:left;padding:2px 8px">আইপি</th><th style="padding:2px 8px">ইউজার সারি</th><th style="padding:2px 8px">ভিজিট সারি</th></tr>' + SM.top.map(function (r) { return '<tr><td style="padding:2px 8px">' + esc(r.ip) + '</td><td style="padding:2px 8px;text-align:center">' + bd(r.p) + '</td><td style="padding:2px 8px;text-align:center">' + bd(r.v) + "</td></tr>"; }).join("") + "</table></div>";
+    return h + "</div>";
+  }
+  function numF(k, f, val) { return "<label>" + f[1] + '<input type="number" id="unAc' + k + f[0] + '" min="0" max="' + f[2] + '" step="1" value="' + esc(val) + '"></label>'; }
+  function blk(k) {
+    var P = PT[k], c = AC[k];
+    return '<div style="border:1px solid #e0e6dc;border-radius:8px;padding:8px;margin:8px 0"><b>' + P.t + "</b> — " + (c.auto ? "🟢 চালু" : "⚪ বন্ধ") + '<p class="sm">' + P.note + " ০ = ওই নিয়ম বন্ধ। নিচের \"ঘণ্টা\" ঘরের ভেতরের সারি কাটা হয় না। প্রতি ১০ মিনিটে প্রতি নিয়মে সর্বোচ্চ ২০০০ সারি।</p>" +
+      '<label style="display:flex;gap:8px;align-items:center;margin:6px 0"><input type="checkbox" id="unAc' + k + 'On"' + (c.auto ? " checked" : "") + "> এটার অটো-ক্লিন চালু (আলাদা সুইচ)</label>" +
+      '<div class="row">' + P.f.map(function (f) { return numF(k, f, c[f[0]]); }).join("") + "</div>" +
+      '<p class="sm">সেভ করা সেটিংয়ে এখনই যেত: দিন-নিয়মে <b>' + bd(c.n_days || 0) + "</b> + একই আইপি <b>" + bd(c.n_ip || 0) + "</b> + সংখ্যা-নিয়মে <b>" + bd(c.n_count || 0) + "</b> সারি।</p>" +
+      '<div class="act"><button class="l" data-ac="s" data-k="' + k + '" type="button">💾 সেভ</button><button class="s" data-ac="p" data-k="' + k + '" type="button">🔍 পরীক্ষা (কিছু মুছবে না)</button><button class="d s" data-ac="r" data-k="' + k + '" type="button">🧹 এখনই চালান</button></div>' +
+      '<p id="unAcM' + k + '" class="sm' + (ACBAD[k] ? " warn" : "") + '">' + esc(ACM[k]) + "</p></div>";
+  }
+  function acHtml() {
+    var h = '<details id="unAc" style="margin:8px 0;border:1px solid #cfd8c8;border-radius:10px;padding:8px 10px"' + (ACO ? " open" : "") + "><summary><b>🧹 অটো-ক্লিন সেটিং (ইউজার ইনফো ও ইউজার লগ — আলাদা আলাদা)</b></summary>";
+    if (ACE) return h + '<p class="sm warn">' + esc(ACE) + "</p></details>";
+    if (!AC) return h + '<p class="sm">⏳ লোড হচ্ছে…</p></details>';
+    return h + blk("p") + blk("v") + "</details>";
+  }
+  function acPaint() {
+    var s = document.getElementById("unSumBox"), b = document.getElementById("unAcBox");
+    if (s) s.innerHTML = sumHtml();
+    if (b) { b.innerHTML = acHtml(); var d = document.getElementById("unAc"); if (d) d.addEventListener("toggle", function () { ACO = d.open; }); }
+  }
+  function acLoad() { return Promise.all([M().rpc("mc2_presence_clean_get"), M().rpc("mc2_presence_summary")]).then(function (r) { AC = r[0]; SM = r[1]; ACE = ""; }).catch(function (e) { AC = null; SM = null; ACE = acErr(e); }); }
+  function acRead(k) {
+    var P = PT[k], o = { p_auto: document.getElementById("unAc" + k + "On").checked };
+    var m = { max: "p_max", ip: "p_ip_max", keep: "p_keep_hr", days: "p_days" };
+    for (var i = 0; i < P.f.length; i++) { var f = P.f[i], n = Math.round(+document.getElementById("unAc" + k + f[0]).value); if (!(n >= 0 && n <= f[2])) { acSay(k, "❌ " + f[1] + ": ০ থেকে " + bd(f[2]) + "-এর মধ্যে পূর্ণ সংখ্যা দিন।", true); return null; } o[m[f[0]]] = n; }
+    return o;
+  }
+  function acSum(r) { r = r || {}; return "দিন-নিয়মে " + bd(r.days || 0) + " + একই আইপি " + bd(r.ip || 0) + " + সংখ্যা-নিয়মে " + bd(r.count || 0) + " সারি"; }
+  function acWire() {
+    acPaint(); var b = document.getElementById("unAcBox"), s = document.getElementById("unSumBox"); if (!b) return;
+    if (!AC && !ACE && !ACL) { ACL = true; acLoad().then(function () { ACL = false; acPaint(); }); }
+    if (s) s.onclick = function (e) { if (e.target.id === "unSumR") { SM = null; acPaint(); acLoad().then(acPaint); } };
+    b.onclick = function (e) {
+      var t = e.target.closest("button[data-ac]"); if (!t) return; var a = t.dataset.ac, k = t.dataset.k, P = PT[k];
+      if (a === "s") { var v = acRead(k); if (!v) return; M().rpc(P.rpc, v).then(function () { return acLoad(); }).then(function () { acPaint(); acSay(k, "✅ সেভ হয়েছে।"); }).catch(function (x) { acSay(k, acErr(x), true); }); return; }
+      if (a === "p") { M().rpc("mc2_presence_clean_run", { p_dry: true, p_part: P.part }).then(function (r) { acSay(k, "🔍 পরীক্ষা (সেভ করা সেটিং ধরে; কিছু মোছা হয়নি) — কাটত: " + acSum(r[k]) + "।"); }).catch(function (x) { acSay(k, acErr(x), true); }); return; }
+      if (a === "r") { if (!confirm("এখনই সেভ করা সেটিংয়ে " + P.t + " থেকে পুরোনো সারি কাটবেন? (কাটা ডেটা ফেরত আসবে না)")) return; M().rpc("mc2_presence_clean_run", { p_dry: false, p_part: P.part }).then(function (r) { return acLoad().then(function () { acPaint(); acSay(k, "✅ চালানো হয়েছে — কেটেছে: " + acSum(r[k]) + "।"); }); }).catch(function (x) { acSay(k, acErr(x), true); }); }
+    };
+  }
   var GL = { m: ["👦", "ছেলে"], f: ["👧", "মেয়ে"], x: ["⚪", "ভিজিটর/অজানা"] };
   function gtag(dev, name, g) {
     if (!g && GM) g = (dev && GM.d[dev]) || GM.n[String(name || "").trim().toLowerCase()];

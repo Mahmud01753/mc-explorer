@@ -9,7 +9,7 @@
   function domain() {
     var C = window.MC_CFG || {}, s = C.siteUrl || "";
     if (!s && /^https?:/.test(location.protocol)) s = location.hostname;
-    s = String(s).replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/[\/?#].*$/, "");
+    s = String(s).replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/[\/?#].*$/, ""); if (s) s = "www." + s;
     return s || "MC Explorer";
   }
   function ver() { // ডিজাইন A/B: ?hb=A|B (ওই ব্রাউজারে মনে থাকে) নইলে config.js brandVer, নইলে A

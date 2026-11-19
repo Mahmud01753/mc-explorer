@@ -24,7 +24,7 @@
   const myDept = () => (isV() ? VISITOR : P.dept), myBatch = () => (isT() ? TEACHER : isV() ? VISITOR : P.batch);
   const rows = () => LS.get("mc2_lb", []).concat(window.MC_REMOTE_ROWS || []);
   const site = () => C.siteUrl ? C.siteUrl.replace(/\/?$/, "/") : /^https?:/.test(location.origin) ? location.origin + "/" : location.href.split("#")[0].split("?")[0];
-  const siteShort = () => site().replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const siteShort = () => { const h = site().replace(/^https?:\/\//, "").replace(/\/$/, "").replace(/^www\./, ""); return h ? "www." + h : h; };
   const clubLabel = () => (isT() || isV() ? (P.post || "").trim() : P.club === "dept" ? (P.clubName || "").trim() : (CLUBS.find((c) => c[0] === P.club) || [0, ""])[1] === "কোনোটি নয়" ? "" : (CLUBS.find((c) => c[0] === P.club) || [0, ""])[1]);
   const tierOf = (score) => (score >= 920 ? 5 : Math.min(4, Math.floor(score / 200)));
 
@@ -182,7 +182,7 @@
     const topHtml = (L) => `<div class="sm" style="margin-bottom:4px">আজকের শীর্ষ ${bn(L.length)}</div>${L.map((r, i) => `<div class="row">${["🥇", "🥈", "🥉"][i]} ${esc(r.name)}<b>${bn(r.pct)}%</b></div>`).join("")}`;
     const avgOf = (L) => { const m = {}; L.forEach((r) => { (m[r.dept] = m[r.dept] || []).push(r.pct); }); return Object.entries(m).map(([k, a]) => [k, Math.round(a.reduce((x, y) => x + y, 0) / a.length)]).sort((x, y) => y[1] - x[1]); };
     const locL = b.filter((r) => new Date(r.ts).toDateString() === new Date().toDateString());
-    V.innerHTML = `<section class="hero"><span class="hchip">⭐ কুইজ চ্যালেঞ্জ</span><h1 class="htt"><span>তুমি</span> <em>এম.সি</em><br><b>কতটুকু চেনো?</b></h1></section><div class="fcard">${form("MC কতটুকু চেনো? →")}</div>
+    V.innerHTML = `<section class="hero"><span class="hchip">⭐ কুইজ চ্যালেঞ্জ</span><h1 class="htt"><span>তুমি</span> <em>এম.সি</em><br><b>কতটুকু চেনো?</b></h1></section><div class="fcard">${form(`<span class="ctaQ">MC কতটুকু চেনো? →</span><span class="ctaC">🎴 কার্ড নাও</span>`)}</div>
       <div class="box" id="hbToday">${srv ? '<div class="row">⏳ আজকের হিসাব আসছে…</div>' : todayHtml(locL.length, avgOf(locL))}</div>
       <div class="box" id="hbTop"${srv || !locL.length ? ' style="display:none"' : ""}>${srv || !locL.length ? "" : topHtml(locL.slice(0, 3))}</div>
       ${LAST ? `<a class="btn l s" id="hbLast" href="#result">🪪 আগের কার্ড দেখো (${bn(LAST.pct)}%)</a>` : ""}

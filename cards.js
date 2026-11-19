@@ -41,7 +41,7 @@
     return LP.then(function (g) { return g ? [g.lm, g.ln, g] : Promise.all([li(D.logos && D.logos.mc), li(D.logos && D.logos.nu)]).then(function (L0) { return [L0[0], L0[1], null]; }); }).then(function (L) {
       return { tier: t, score: r.score, club: r.club || "", pct: r.pct, photo: photo || null, name: r.name, dept: r.dept, batch: r.batch, deptLabel: D.deptLabel ? D.deptLabel(r.dept) : r.dept, drank: r.drank || 1,
         best: r.bestPlace || "—", date: new Date(r.ts || Date.now()).toLocaleDateString("bn-BD", { day: "numeric", month: "long", year: "numeric" }), title: r.title || "", ok: r.ok, total: r.total, rank: r.rank || 1,
-        game: "Guess the Place", lm: L[0], ln: L[1], lgm: L[2] ? L[2].lgm : undefined, lgs: L[2] ? L[2].lgs : undefined, tl: L[2] ? L[2].tl : undefined, tr: L[2] ? L[2].tr : undefined, col: D.classCols[t], metal: D.classMetal[t], cname: D.classes[t], qr: qrOf(site), site: site.replace(/^https?:\/\//, "").replace(/\/$/, "") };
+        game: "Guess the Place", lm: L[0], ln: L[1], lgm: L[2] ? L[2].lgm : undefined, lgs: L[2] ? L[2].lgs : undefined, tl: L[2] ? L[2].tl : undefined, tr: L[2] ? L[2].tr : undefined, col: D.classCols[t], metal: D.classMetal[t], cname: D.classes[t], qr: qrOf(site), site: (function (h) { return h ? "www." + h : h; })(site.replace(/^https?:\/\//, "").replace(/\/$/, "").replace(/^www\./, "")) };
     });
   }
   // ✍️ rec.tx = { কী: লেখা } → card.js-এর o.tx (হার্ড-কোড লেখা) + কয়েকটা সরাসরি ঘর (তারিখ, গেম, ক্লাস-ব্যাজ, লোগোর অক্ষর, র‍্যাংক-পদকের লেখা)

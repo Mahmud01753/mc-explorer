@@ -90,7 +90,7 @@
   var PZ_DEF = { pc: "auto", g: "a", d: 0, b: "__a", m: "__a", t: PZ_TX.t[0], f: "@url", h: "MC Explorer", qr: false, u: "", bs: 1, ms: 1, ma: "c", ts: 1, fs: 1, fa: "c" };
   function pcolOf(sv, T) { var v = sv && sv.pc, hex = /^#[0-9a-f]{6}$/i; if (v && v !== "auto" && hex.test(v)) return v; return hex.test(T.acc || "") ? T.acc : "#ffb300"; }
   function pillInk(h) { var m = /^#([0-9a-f]{6})$/i.exec(h || ""); if (!m) return "#10261b"; var n = parseInt(m[1], 16), r = n >> 16 & 255, g = n >> 8 & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) > 150 ? "#10261b" : "#ffffff"; }
-  var urlTxt = function () { return (siteUrl() || "").replace(/^https?:\/\//, "").replace(/\/$/, "") || "MC Explorer Challenge"; };
+  var urlTxt = function () { var h = (siteUrl() || "").replace(/^https?:\/\//, "").replace(/\/$/, "").replace(/^www\./, ""); return h ? "www." + h : "MC Explorer Challenge"; };
   function star(c, x, y, r) { c.beginPath(); for (var i = 0; i < 10; i++) { var a = -Math.PI / 2 + i * Math.PI / 5, k = i % 2 ? r * .45 : r; c.lineTo(x + Math.cos(a) * k, y + Math.sin(a) * k); } c.closePath(); c.fill(); }
   function pzPat(c, T, rn, W, cyy) {
     var i, x, y, k; cyy = cyy || 470; c.save();
